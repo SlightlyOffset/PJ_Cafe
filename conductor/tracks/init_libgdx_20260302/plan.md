@@ -20,3 +20,6 @@ ender(), and dispose() methods with basic screen clearing
     - [x] Run ./gradlew desktop:run and confirm the game window appears
     - [x] Verify the render loop clears the screen with the expected color
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Environment Verification' (Protocol in workflow.md) ($short_sha)
+
+## Phase 3: Test Coverage Improvement
+- [ ] Task: Expand test coverage for PathPuzzleGame (create(), render(), dispose())
