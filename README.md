@@ -37,6 +37,60 @@ To run the desktop version of the game, execute the following command in the pro
 ./gradlew desktop:run
 ```
 
+### Running Tests
+
+```bash
+# Run all tests
+./gradlew core:test
+
+# Run a single test class
+./gradlew core:test --tests "core.TileTest"
+```
+
+## 🤝 Contributing
+
+All contributors follow a shared workflow to keep the codebase clean and history readable.
+
+### Branching
+
+- `main` — stable, always runnable.
+- Feature branches: `feat/<short-description>` (e.g. `feat/level-select`)
+- Bug fix branches: `fix/<short-description>` (e.g. `fix/tile-rotation-wrap`)
+
+### Commit Messages
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<scope>): <short description>
+```
+
+| Type | When to use |
+|------|-------------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `refactor` | Code change with no behaviour change |
+| `test` | Adding or fixing tests |
+| `docs` | Documentation only |
+| `chore` | Build scripts, config, maintenance |
+
+**Examples:**
+```bash
+git commit -m "feat(grid): Add path connection validation"
+git commit -m "fix(tile): Correct counter-clockwise wrap-around"
+git commit -m "test(grid): Add tests for out-of-bounds access"
+```
+
+### Development Workflow
+
+1. **Branch** off `main` for every task.
+2. **Write a failing test first** (Red), then implement to make it pass (Green), then refactor.
+3. **Run tests** before committing — `./gradlew core:test`.
+4. **Open a Pull Request** against `main` with a clear description of what changed and why.
+5. **Merge** only when tests are green and at least one teammate has reviewed.
+
+See [`conductor/workflow.md`](conductor/workflow.md) for the full task lifecycle, commit note conventions, and phase checkpoint process.
+
 ## 🎓 OOP Principles in Practice
 
 This project serves as a reference for students learning Object-Oriented Programming. Key concepts implemented include:
