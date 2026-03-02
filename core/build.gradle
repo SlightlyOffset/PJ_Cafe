@@ -5,6 +5,7 @@ java {
 
 tasks.withType(JavaCompile).configureEach {
 	options.encoding = "UTF-8"
+	options.incremental = false
 }
 
 sourceSets.main.java.srcDirs = [ "src/main/java" ]
