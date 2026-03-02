@@ -26,5 +26,8 @@ Thumbs.db
 # Local properties (may contain machine-specific paths)
 local.properties
 
+# gemini-cli settings
 .gemini/
+
+# GitHub App credentials
 gha-creds-*.json
