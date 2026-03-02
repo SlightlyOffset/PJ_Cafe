@@ -1,10 +1,10 @@
-﻿# Technology Stack - P'J Cafe (Puzzle Game)
+# Technology Stack - P'J Cafe (Puzzle Game)
 
 ## Language & Runtime
-- **Java 20+:** Utilizing modern language features for clean object-oriented design and performance.
+- **Java 25:** Utilizing modern language features for clean object-oriented design and performance.
 
 ## Core Framework
-- **libGDX:** A cross-platform game development framework providing efficient handling of graphics (OpenGL/LWJGL), input, audio, and more for the desktop platform.
+- **libGDX 1.13.1:** A cross-platform game development framework providing efficient handling of graphics (OpenGL/LWJGL), input, audio, and more for the desktop platform.
 
 ## Build System
 - **Gradle:** Standard build automation tool for Java and libGDX projects, managing dependencies and project structure.
