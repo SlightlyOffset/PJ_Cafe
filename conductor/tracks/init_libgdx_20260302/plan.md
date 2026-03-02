@@ -6,11 +6,11 @@ This plan outlines the steps to set up the initial libGDX project and a basic ga
 - [x] Task: Initialize Gradle project with core and desktop modules (896a30a)
     - [ ] Create root uild.gradle and settings.gradle
     - [x] Configure Java 20 toolchain and libGDX dependencies
-- [ ] Task: Implement basic DesktopLauncher
-    - [ ] Create DesktopLauncher class in the desktop module
-    - [ ] Configure Lwjgl3ApplicationConfiguration (window title, size, etc.)
-- [ ] Task: Implement core Game class
-    - [ ] Create PathPuzzleGame class extending Game in the core module
+- [x] Task: Implement basic DesktopLauncher (c761833)
+    - [x] Create DesktopLauncher class in the desktop module
+    - [x] Configure Lwjgl3ApplicationConfiguration (window title, size, etc.)
+- [x] Task: Implement core Game class (c761833)
+    - [x] Create PathPuzzleGame class extending Game in the core module
     - [ ] Implement create(), 
 ender(), and dispose() methods with basic screen clearing
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Project Scaffolding' (Protocol in workflow.md)
