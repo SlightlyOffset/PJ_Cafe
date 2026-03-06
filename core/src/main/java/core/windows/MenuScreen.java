@@ -44,15 +44,16 @@ public class MenuScreen implements Screen {
     }
 
     private void setupUI() {
-        // Add Logo (image)
-        Image logo = new Image(assetManager.get("Logo.png", Texture.class));
-        table.add(logo).padBottom(50).row(); // Move to next row after adding logo
+        // Add Logo (image) - Commented out for now to prevent crash until loaded
+        // Image logo = new Image(assetManager.get("Logo.png", Texture.class));
+        // table.add(logo).padBottom(50).row(); // Move to next row after adding logo
 
-        // Create Buttons
-        TextButton startButton = new TextButton("Start", new TextButton.TextButtonStyle());
-        TextButton exitButton = new TextButton("Exit", new TextButton.TextButtonStyle());
+        // Create Buttons - Commented out for now to prevent crash until skins are loaded
+        // TextButton startButton = new TextButton("Start", new TextButton.TextButtonStyle());
+        // TextButton exitButton = new TextButton("Exit", new TextButton.TextButtonStyle());
 
         // Add listeners for interaction
+        /*
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -69,6 +70,7 @@ public class MenuScreen implements Screen {
 
         table.add(startButton).fillX().uniformX().pad(10).row();
         table.add(exitButton).fillX().uniformX().pad(10);
+        */
     }
 
     @Override
