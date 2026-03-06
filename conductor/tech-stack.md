@@ -12,7 +12,6 @@
 ## Graphics & Rendering
 - **LWJGL (Lightweight Java Game Library):** Underpins libGDX's desktop backend for high-performance access to OpenGL.
 
-## Project Structure (Inferred for Puzzle Game)
-- **libGDX Project Structure:**
-  - core/: Shared game logic and mechanic implementations.
-  - desktop/: Desktop-specific initialization and application configuration.
+## Testing Frameworks
+- **JUnit 5 (Jupiter):** Standard testing framework for Java, used for writing and running unit tests.
+- **Mockito 5:** Mocking framework for Java, used to isolate components during unit testing (especially useful for libGDX context objects).

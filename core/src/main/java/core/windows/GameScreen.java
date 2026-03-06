@@ -8,17 +8,21 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import core.mechanics.Grid;
+import core.mechanics.PathPuzzleGame;
 import core.mechanics.Tile;
 
 public class GameScreen extends ScreenAdapter {
     private static final int TILE_SIZE = 100;
+    private final PathPuzzleGame game;
     private Grid grid;
     private ShapeRenderer shapeRenderer;
     private OrthographicCamera camera;
     private final float gridOffsetX;
     private final float gridOffsetY;
 
-    public GameScreen() {
+    public GameScreen(PathPuzzleGame game) {
+        this.game = game;
+
         // 1. Create and fill the grid
         grid = new Grid(4, 4);
         grid.randomInitTile();
