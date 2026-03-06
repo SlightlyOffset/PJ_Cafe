@@ -1,13 +1,11 @@
 package core;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 
 public class PathPuzzleGame extends Game {
     @Override
     public void create() {
-        setScreen(new GameScreen());
+        setScreen(new MenuScreen(this));
     }
 
     @Override
@@ -17,6 +15,8 @@ public class PathPuzzleGame extends Game {
 
     @Override
     public void dispose() {
-        // delegate to GameScreen.render()
+        if (getScreen() != null) {
+            getScreen().dispose();
+        }
     }
 }
