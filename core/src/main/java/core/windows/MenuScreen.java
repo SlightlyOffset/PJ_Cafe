@@ -22,6 +22,8 @@ import com.badlogic.gdx.graphics.Pixmap;
 
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import com.badlogic.gdx.audio.Music;
+
 public class MenuScreen implements Screen {
     private final AssetManager assetManager;
     private final PathPuzzleGame game;
@@ -29,6 +31,7 @@ public class MenuScreen implements Screen {
     private Table table;
     private Viewport viewport;
     private Skin skin;
+    private Music music;
 
     public MenuScreen(PathPuzzleGame game) {
         this.game = game;
@@ -76,6 +79,13 @@ public class MenuScreen implements Screen {
 
         // Add Logo and Buttons to the table
         setupUI();
+
+        // Play background music if loaded
+        if (assetManager.isLoaded("menu_bgm.mp3", Music.class)) {
+            music = assetManager.get("menu_bgm.mp3", Music.class);
+            music.setLooping(true);
+            music.play();
+        }
     }
 
     private void setupUI() {
@@ -151,7 +161,9 @@ public class MenuScreen implements Screen {
 
     @Override
     public void hide() {
-
+        if (music != null) {
+            music.stop();
+        }
     }
 
     @Override

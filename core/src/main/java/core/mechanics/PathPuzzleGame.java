@@ -3,6 +3,7 @@ package core.mechanics;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Music;
 import core.windows.GameScreen;
 import core.windows.MenuScreen;
 
@@ -16,6 +17,7 @@ public class PathPuzzleGame extends Game {
         // Preload assets
         assetManager.load("logo.png", Texture.class);
         assetManager.load("background.png", Texture.class);
+        // assetManager.load("menu_bgm.mp3", Music.class);
         assetManager.finishLoading();
 
         setScreen(new MenuScreen(this)); // Pass the game instance to MenuScreen
