@@ -20,6 +20,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.graphics.Pixmap;
 
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
 public class MenuScreen implements Screen {
     private final AssetManager assetManager;
     private final PathPuzzleGame game;
@@ -63,7 +65,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void show() {
-        viewport = new FitViewport(800, 480); // Maintain aspect ratio
+        viewport = new ScreenViewport(); // Use ScreenViewport to prevent stretching
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage); // Let the stage handle input events (click events)
 
@@ -78,8 +80,8 @@ public class MenuScreen implements Screen {
 
     private void setupUI() {
         // Add Logo (image)
-        if (assetManager.isLoaded("Logo.png", Texture.class)) {
-            Image logo = new Image(assetManager.get("Logo.png", Texture.class));
+        if (assetManager.isLoaded("logo.png", Texture.class)) {
+            Image logo = new Image(assetManager.get("logo.png", Texture.class));
             table.add(logo).padBottom(50).row(); // Move to next row after adding logo
         }
 
@@ -116,7 +118,7 @@ public class MenuScreen implements Screen {
         // Draw background if we have one
         if (assetManager.isLoaded("background.png", Texture.class)) {
             stage.getBatch().begin();
-            stage.getBatch().draw(assetManager.get("background.png", Texture.class), 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+            stage.getBatch().draw(assetManager.get("background.png", Texture.class), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             stage.getBatch().end();
         }
 
@@ -127,7 +129,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        viewport.update(width, height, true);
     }
 
     @Override
