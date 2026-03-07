@@ -32,9 +32,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Interactivity & Transitions' (481202c)
 
 ## Phase 4: Audio & Polish
-- [ ] Task: Background Music
-    - [ ] Write tests for loading and playback of background music.
-    - [ ] Implement looping background music in `MenuScreen`.
+- [x] Task: Background Music (c6e8038)
+    - [x] Write tests for loading and playback of background music.
+    - [x] Implement looping background music in `MenuScreen`.
 - [ ] Task: Sound Effects (SFX)
     - [ ] Write tests for triggering SFX on button clicks.
     - [ ] Implement click SFX using `Sound` assets.
