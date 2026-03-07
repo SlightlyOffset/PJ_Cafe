@@ -47,6 +47,29 @@ To run the desktop version of the game, execute the following command in the pro
 ./gradlew core:test --tests "core.TileTest"
 ```
 
+## 🛠️ Troubleshooting & Environment
+
+### Modified Gradle Wrapper (`gradlew.bat`)
+On some Windows environments (especially those with restrictive HIPS/Antivirus settings like ESET), the standard `gradlew.bat` might hang indefinitely when spawning child processes. 
+
+To address this, the `gradlew.bat` in this repository has been simplified to directly invoke the Gradle wrapper JAR using a fixed `JAVA_HOME` pointing to JDK 25.
+
+**If the build fails or hangs:**
+1. **Direct JAR Invocation:** Use this command to bypass the batch script entirely:
+   ```powershell
+   java -jar gradle\wrapper\gradle-wrapper.jar <task>
+   # Example:
+   java -jar gradle\wrapper\gradle-wrapper.jar core:test
+   ```
+2. **Reverting the Wrapper:** If you prefer the standard Gradle wrapper (and your environment supports it), you can restore it from the backup:
+   ```powershell
+   copy gradlew.bat.original gradlew.bat
+   # Or using git:
+   git checkout gradlew.bat
+   ```
+
+3. **Check JDK Path:** If you use the modified script, ensure your JDK is installed at `C:\Program Files\Java\jdk-25` or update the `set JAVA_HOME` line in `gradlew.bat` to match your local installation.
+
 ## 🤝 Contributing
 
 All contributors follow a shared workflow to keep the codebase clean and history readable.
