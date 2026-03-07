@@ -35,7 +35,7 @@
 - [x] Task: Background Music (c6e8038)
     - [x] Write tests for loading and playback of background music.
     - [x] Implement looping background music in `MenuScreen`.
-- [ ] Task: Sound Effects (SFX)
-    - [ ] Write tests for triggering SFX on button clicks.
-    - [ ] Implement click SFX using `Sound` assets.
+- [x] Task: Sound Effects (SFX) (ec8297b)
+    - [x] Write tests for triggering SFX on button clicks.
+    - [x] Implement click SFX using `Sound` assets.
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Audio & Polish' (Protocol in workflow.md)
