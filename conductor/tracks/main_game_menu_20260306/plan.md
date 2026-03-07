@@ -8,7 +8,7 @@
     - [ ] Implement `MenuScreen` skeleton to pass initial tests.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Preparation & Setup' (e0b2df0)
 
-## Phase 2: UI Layout & Graphics
+## Phase 2: UI Layout & Graphics [checkpoint: 08d61eb]
 - [x] Task: Background & Logo Rendering (1a27cf5)
     - [ ] Write tests for background image loading and rendering in `MenuScreen`.
     - [ ] Implement background image display using a `Texture` or `TextureRegion`.
@@ -18,7 +18,7 @@
     - [ ] Write tests for UI `Table` alignment (aligned to the right side of the screen).
     - [ ] Write tests for button creation and vertical organization in the `Table`.
     - [ ] Implement the `Table` and buttons ("Start", "Options", "Exit") to pass tests.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: UI Layout & Graphics' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: UI Layout & Graphics' (08d61eb)
 
 ## Phase 3: Interactivity & Transitions
 - [ ] Task: Screen Transitions
