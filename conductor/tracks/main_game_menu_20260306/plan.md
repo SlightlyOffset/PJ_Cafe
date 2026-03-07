@@ -27,8 +27,8 @@
 - [x] Task: Application Control (6843838)
     - [x] Write tests to verify that clicking the "Exit" button triggers `Gdx.app.exit()`.
     - [x] Implement the `ClickListener` for the "Exit" button.
-- [ ] Task: Options Placeholder
-    - [ ] Implement a basic placeholder for the "Options" button (e.g., logging a message).
+- [x] Task: Options Placeholder (fdda288)
+    - [x] Implement a basic placeholder for the "Options" button (e.g., logging a message).
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Interactivity & Transitions' (Protocol in workflow.md)
 
 ## Phase 4: Audio & Polish
