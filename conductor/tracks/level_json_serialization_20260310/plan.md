@@ -3,7 +3,7 @@
 ## Phase 1: Schema Definition & Basic Deserialization
 - [x] Task: Define the Level JSON Schema. (471637d)
     - [ ] Create an example `level_1.json` in `assets/levels/`.
-- [ ] Task: Update `Tile` and `Grid` for Json compatibility.
+- [x] Task: Update `Tile` and `Grid` for Json compatibility. (a2c6f6d)
     - [ ] Ensure classes have appropriate constructors or interfaces for `com.badlogic.gdx.utils.Json`.
 - [ ] Task: Implement `LevelLoader` utility.
     - [ ] Create a static or singleton class to handle file reading and object creation.
