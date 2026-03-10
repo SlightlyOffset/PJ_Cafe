@@ -1,6 +1,6 @@
 # Implementation Plan - Level JSON Serialization
 
-## Phase 1: Schema Definition & Basic Deserialization
+## Phase 1: Schema Definition & Basic Deserialization [checkpoint: 0c5e1d1]
 - [x] Task: Define the Level JSON Schema. (471637d)
     - [ ] Create an example `level_1.json` in `assets/levels/`.
 - [x] Task: Update `Tile` and `Grid` for Json compatibility. (a2c6f6d)
