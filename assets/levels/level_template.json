@@ -1,0 +1,12 @@
+{
+  // May add level title in future update
+
+  "cols":, // number of colums in the level (int) -> n
+  "rows":, // number of rows in the level (int) -> i
+  "tile": [ // top layer list corespond to the number of rows,
+    //and each dict inside corespond to the number of columns
+    { "type": /* type of the tile -> refer to Enum TileTyle.java */, "rotation": /* rotation of the tile in degree, can be 0, 90, 180, 270 */ },
+    // add more dicts here to n columns
+  ],
+    // add more lists here to i rows
+}
