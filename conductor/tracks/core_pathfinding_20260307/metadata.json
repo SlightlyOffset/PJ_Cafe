@@ -1,0 +1,7 @@
+{
+  "id": "core_pathfinding_20260307",
+  "name": "Feature: Core Puzzle Connectivity & Path Validation Logic",
+  "status": "In Progress",
+  "created_at": "2026-03-07",
+  "branch": "feat/pathfinding"
+}

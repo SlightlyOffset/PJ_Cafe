@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 ﻿# Specification: Initialize libGDX project structure and core game loop
 
 ## Overview

@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Implementation Plan - Core Puzzle Grid and Tile Interaction
 
 This plan outlines the steps to implement the core mechanics of the path-rotating puzzle.

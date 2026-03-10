@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 ﻿# Product Guidelines - P'J Cafe (Puzzle Game)
 
 ## Prose Style

@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 ﻿# Initial Concept
 
 A puzzle game /w main mechanic being rotating paths to the finishing point using java 20+ and libGDX as framework.

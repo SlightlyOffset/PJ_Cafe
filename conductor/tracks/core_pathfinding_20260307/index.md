@@ -4,7 +4,7 @@ tags:
   - "#gemini"
   - "#AI"
 ---
-﻿# Track init_libgdx_20260302 Context
+# Track: Core Pathfinding
 
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)

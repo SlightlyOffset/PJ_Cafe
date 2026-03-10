@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Implementation Plan - Main Game Menu
 
 ## Phase 1: Preparation & Setup [checkpoint: e0b2df0]

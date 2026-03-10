@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Track core_puzzle_grid_20260302 Context
 
 - [Specification](./spec.md)

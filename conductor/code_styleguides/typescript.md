@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Google TypeScript Style Guide Summary
 
 This document summarizes key rules and best practices from the Google TypeScript Style Guide, which is enforced by the `gts` tool.
