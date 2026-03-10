@@ -4,6 +4,11 @@ public class Tile {
     private final TileType type;
     private int rotation; // 0, 90, 180, 270
 
+    public Tile() {
+        this.type = TileType.STRAIGHT;
+        this.rotation = 0;
+    }
+
     public Tile(TileType type) {
         this.type = type;
         this.rotation = 0;

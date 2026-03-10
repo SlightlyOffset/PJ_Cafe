@@ -7,6 +7,11 @@ public class Grid {
     private final int rows;
     private Tile[][] tiles;
 
+    public Grid() {
+        this.cols = 0;
+        this.rows = 0;
+    }
+
     public Grid(int cols, int rows) {
         this.cols = cols;
         this.rows = rows;
