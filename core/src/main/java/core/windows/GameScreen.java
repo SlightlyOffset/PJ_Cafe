@@ -76,6 +76,10 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        if (grid == null || camera == null || shapeRenderer == null) {
+            return;
+        }
+
         // 1. Clear the screen
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -150,6 +154,6 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        shapeRenderer.dispose();
+        if (Gdx.graphics != null ) shapeRenderer.dispose();
     }
 }
