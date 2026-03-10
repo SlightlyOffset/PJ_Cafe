@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Technology Stack - P'J Cafe (Puzzle Game)
 
 ## Language & Runtime
@@ -8,6 +14,10 @@
 
 ## Build System
 - **Gradle:** Standard build automation tool for Java and libGDX projects, managing dependencies and project structure.
+
+## Data & Serialization
+- **JSON:** Used for defining level data, game configurations, and persistent state.
+- **libGDX Json Utility:** Utilized for seamless object-to-JSON serialization and deserialization.
 
 ## Graphics & Rendering
 - **LWJGL (Lightweight Java Game Library):** Underpins libGDX's desktop backend for high-performance access to OpenGL.

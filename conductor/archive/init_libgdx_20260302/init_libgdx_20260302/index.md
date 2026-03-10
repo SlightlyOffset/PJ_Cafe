@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 ﻿# Track init_libgdx_20260302 Context
 
 - [Specification](./spec.md)

@@ -1,10 +1,4 @@
----
-tags:
-  - "#conductor"
-  - "#gemini"
-  - "#AI"
----
-﻿# Track init_libgdx_20260302 Context
+# Track: Level JSON Serialization
 
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)
