@@ -1,7 +1,7 @@
 # Implementation Plan - Level JSON Serialization
 
 ## Phase 1: Schema Definition & Basic Deserialization
-- [ ] Task: Define the Level JSON Schema.
+- [x] Task: Define the Level JSON Schema. (471637d)
     - [ ] Create an example `level_1.json` in `assets/levels/`.
 - [ ] Task: Update `Tile` and `Grid` for Json compatibility.
     - [ ] Ensure classes have appropriate constructors or interfaces for `com.badlogic.gdx.utils.Json`.
