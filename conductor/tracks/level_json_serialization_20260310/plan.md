@@ -5,7 +5,7 @@
     - [ ] Create an example `level_1.json` in `assets/levels/`.
 - [x] Task: Update `Tile` and `Grid` for Json compatibility. (a2c6f6d)
     - [ ] Ensure classes have appropriate constructors or interfaces for `com.badlogic.gdx.utils.Json`.
-- [ ] Task: Implement `LevelLoader` utility.
+- [x] Task: Implement `LevelLoader` utility. (ab6cf20)
     - [ ] Create a static or singleton class to handle file reading and object creation.
 
 ## Phase 2: Testing & Integration
