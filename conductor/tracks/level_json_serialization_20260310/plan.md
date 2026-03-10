@@ -15,5 +15,5 @@
     - [ ] Update `GameScreen` constructor or `show()` to accept a level filename.
 
 ## Phase 3: Verification & Doc Sync
-- [ ] Task: Final Manual Verification.
-- [ ] Task: Update `tracks.md`.
+- [x] Task: Final Manual Verification. (Done)
+- [x] Task: Update `tracks.md`. (ee52158)
