@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Track Specification - core_puzzle_grid_20260302
 
 ## Goal

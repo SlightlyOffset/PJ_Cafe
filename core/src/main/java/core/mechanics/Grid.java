@@ -5,12 +5,17 @@ import java.util.Random;
 import com.badlogic.gdx.Input.TextInputListener;
 
 public class Grid {
-    private final int cols;
-    private final int rows;
+    private int cols;
+    private int rows;
     private Tile[][] tiles;
 
     // start(x, y), end(x, y)
     private int startX, startY, endX, endY;
+
+    public Grid() {
+        this.cols = 0;
+        this.rows = 0;
+    }
 
     public Grid(int cols, int rows) {
         this.cols = cols;

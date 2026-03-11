@@ -111,7 +111,9 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play();
-                game.setScreen(new GameScreen(game)); // Start the game -> Transition to GameScreen
+                // The game still lack level selection screen -> directly switch to main game screen
+                // Level selection will be implemented in the future, for now we just load the first level
+                game.setScreen(new GameScreen(game, "levels/level_1.json")); // Start the game -> Transition to GameScreen
             }
         });
 

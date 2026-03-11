@@ -1,4 +1,10 @@
-﻿# Project Context
+---
+tags:
+  - conductor
+  - gemini
+  - AI
+---
+# Project Context
 
 ## Definition
 - [Product Definition](./product.md)

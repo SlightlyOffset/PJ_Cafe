@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 ﻿# Initial Concept
 
 A puzzle game /w main mechanic being rotating paths to the finishing point using java 20+ and libGDX as framework.
@@ -13,6 +19,7 @@ The project aims to develop a desktop-based puzzle game with a central mechanic 
 ## Key Features
 - **Path Rotation:** Rotate path tiles/segments to change their orientation.
 - **Level Completion:** Successfully connect the start and end points to complete a level.
+- **JSON Level Loading:** Levels are defined in external JSON files, decoupling level design from the game's source code.
 - **Main Game Menu:** Initial screen for starting games, accessing options, and exiting.
 - **Java 20+ Compatibility:** Modern Java environment utilizing contemporary language features.
 - **libGDX Framework:** High-performance cross-platform game development framework for graphics and input management.

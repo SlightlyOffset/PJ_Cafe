@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Implementation Plan - Initialize libGDX project structure and core game loop
 
 This plan outlines the steps to set up the initial libGDX project and a basic game loop.

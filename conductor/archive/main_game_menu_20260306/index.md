@@ -1,3 +1,9 @@
+---
+tags:
+  - "#conductor"
+  - "#gemini"
+  - "#AI"
+---
 # Track main_game_menu_20260306 Context
 
 - [Specification](./spec.md)

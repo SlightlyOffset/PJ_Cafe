@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import core.mechanics.Grid;
+import core.mechanics.LevelLoader;
 import core.mechanics.PathPuzzleGame;
 import core.mechanics.Tile;
 
@@ -17,26 +18,36 @@ public class GameScreen extends ScreenAdapter {
     private Grid grid;
     private ShapeRenderer shapeRenderer;
     private OrthographicCamera camera;
-    private final float gridOffsetX;
-    private final float gridOffsetY;
+    private float gridOffsetX;
+    private float gridOffsetY;
 
     public GameScreen(PathPuzzleGame game) {
+        this(game, null);
+    }
+
+    public GameScreen(PathPuzzleGame game, String levelPath) {
         this.game = game;
 
         // 1. Create and fill the grid
-        grid = new Grid(4, 4);
-        grid.randomInitTile();
+        if (levelPath != null) {
+            grid = LevelLoader.loadLevel(levelPath);
+        } else {
+            grid = new Grid(4, 4);
+            grid.randomInitTile();
+        }
 
         // 2. Set up camera (false = Y go upward)
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        if (Gdx.graphics != null) {
+            camera = new OrthographicCamera();
+            camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        // 3. Center the grid to the screen
-        gridOffsetX = (Gdx.graphics.getWidth() - TILE_SIZE * 4) / 2f;
-        gridOffsetY = (Gdx.graphics.getHeight() - TILE_SIZE * 4) / 2f;
+            // 3. Center the grid to the screen
+            gridOffsetX = (Gdx.graphics.getWidth() - TILE_SIZE * grid.getCols()) / 2f;
+            gridOffsetY = (Gdx.graphics.getHeight() - TILE_SIZE * grid.getRows()) / 2f;
 
-        // 4. Create a ShapeRenderer for drawing shapes
-        shapeRenderer = new ShapeRenderer();
+            // 4. Create a ShapeRenderer for drawing shapes
+            shapeRenderer = new ShapeRenderer();
+        }
     }
 
     @Override
@@ -65,6 +76,10 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        if (grid == null || camera == null || shapeRenderer == null) {
+            return;
+        }
+
         // 1. Clear the screen
         Gdx.gl.glClearColor(0.2f, 0.2f, 0.2f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -139,6 +154,6 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void dispose() {
-        shapeRenderer.dispose();
+        if (Gdx.graphics != null ) shapeRenderer.dispose();
     }
 }
