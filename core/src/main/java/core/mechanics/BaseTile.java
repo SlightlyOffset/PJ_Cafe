@@ -12,7 +12,7 @@ public abstract class BaseTile {
         this.type = type;
         this.rotation = 0;
     }
-    public int  getRotation() {
+    public int getRotation() {
         return rotation;
     }
     public TileType getType() {
