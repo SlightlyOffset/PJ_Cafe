@@ -40,13 +40,13 @@ public class AwtRenderer implements IRenderer {
         // 0=N, 1=E, 2=S, 3=W
         switch (direction) {
             case 0: // North
-                g2d.fillRect((int) (cx - halfWidth), (int) cy, (int) (halfWidth * 2), (int) length);
+                g2d.fillRect((int) (cx - halfWidth), (int) (cy - length), (int) (halfWidth * 2), (int) length);
                 break;
             case 1: // East
                 g2d.fillRect((int) cx, (int) (cy - halfWidth), (int) length, (int) (halfWidth * 2));
                 break;
             case 2: // South
-                g2d.fillRect((int) (cx - halfWidth), (int) (cy - length), (int) (halfWidth * 2), (int) length);
+                g2d.fillRect((int) (cx - halfWidth), (int) cy, (int) (halfWidth * 2), (int) length);
                 break;
             case 3: // West
                 g2d.fillRect((int) (cx - length), (int) (cy - halfWidth), (int) length, (int) (halfWidth * 2));
