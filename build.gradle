@@ -54,4 +54,12 @@ project(":core") {
     test {
         useJUnitPlatform()
     }
+
+    task runAwt(type: JavaExec) {
+        group = "application"
+        description = "Runs the AWT test harness"
+        mainClass = 'core.windows.awt.AwtGameWindow'
+        classpath = sourceSets.main.runtimeClasspath
+    }
 }
+
