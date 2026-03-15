@@ -21,9 +21,17 @@ public class AwtGameWindow extends JFrame {
     private final AwtGameCanvas gameCanvas;
 
     public AwtGameWindow() {
-        // Setup simple game state for testing
-        grid = new Grid(4, 4);
-        grid.randomInitTile();
+        this(null);
+    }
+
+    public AwtGameWindow(String levelPath) {
+        // Setup game state
+        if (levelPath != null) {
+            grid = core.mechanics.LevelLoader.loadLevel(levelPath);
+        } else {
+            grid = new Grid(4, 4);
+            grid.randomInitTile();
+        }
 
         awtRenderer = new AwtRenderer();
         worldRenderer = new WorldRenderer(awtRenderer, 100);
