@@ -15,6 +15,7 @@ public class AwtGameCanvas extends JPanel {
     private final Grid grid;
     private final AwtRenderer awtRenderer;
     private final WorldRenderer worldRenderer;
+    private final int tileSize;
     private float gridOffsetX;
     private float gridOffsetY;
 
@@ -22,6 +23,7 @@ public class AwtGameCanvas extends JPanel {
         this.grid = grid;
         this.awtRenderer = awtRenderer;
         this.worldRenderer = worldRenderer;
+        this.tileSize = 100; // Match AwtGameWindow
     }
 
     @Override
@@ -34,8 +36,8 @@ public class AwtGameCanvas extends JPanel {
         // Clear the screen using the WorldRenderer to match the GDX rendering path
         worldRenderer.clearScreen();
 
-        gridOffsetX = (getWidth() - grid.getCols() * 100) / 2f;
-        gridOffsetY = (getHeight() - grid.getRows() * 100) / 2f;
+        gridOffsetX = (getWidth() - grid.getCols() * tileSize) / 2f;
+        gridOffsetY = (getHeight() - grid.getRows() * tileSize) / 2f;
 
         // Use the pluggable WorldRenderer to draw the grid
         worldRenderer.render(grid, gridOffsetX, gridOffsetY);
