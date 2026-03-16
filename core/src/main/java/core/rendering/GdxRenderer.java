@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  * libGDX implementation of the IRenderer interface using ShapeRenderer.
  * Used for high-performance rendering.
  */
-public class GdxRenderer implements IRenderer {
+public class GdxRenderer extends BaseRenderer {
     private ShapeRenderer shapeRenderer;
 
     public void setShapeRenderer(ShapeRenderer shapeRenderer) {
@@ -51,10 +51,5 @@ public class GdxRenderer implements IRenderer {
                 shapeRenderer.rect(cx - length, cy - halfWidth, length, halfWidth * 2);
                 break;
         }
-    }
-
-    @Override
-    public void endFrame() {
-        // No-op for GdxRenderer as ShapeRenderer's end() call is typically handled in GameScreen
     }
 }

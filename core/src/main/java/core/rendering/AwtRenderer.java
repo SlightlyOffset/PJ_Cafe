@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
  * AWT-based implementation of the IRenderer interface.
  * Fulfills the project requirement of using standard Java Graphics without frameworks.
  */
-public class AwtRenderer implements IRenderer {
+public class AwtRenderer extends BaseRenderer {
     private Graphics2D g2d;
     private int screenWidth;
     private int screenHeight;
@@ -52,11 +52,5 @@ public class AwtRenderer implements IRenderer {
                 g2d.fillRect((int) (cx - length), (int) (cy - halfWidth), (int) length, (int) (halfWidth * 2));
                 break;
         }
-    }
-
-    @Override
-    public void endFrame() {
-        // Not strictly necessary for AWT as the Graphics object is usually disposed elsewhere,
-        // but can be used for cleanup if needed.
     }
 }
