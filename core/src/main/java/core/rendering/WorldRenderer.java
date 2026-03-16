@@ -22,6 +22,13 @@ public class WorldRenderer {
     }
 
     /**
+     * Clears the screen using a default background color.
+     */
+    public void clearScreen() {
+        renderer.clearScreen(0.2f, 0.2f, 0.2f, 1.0f);
+    }
+
+    /**
      * Main rendering loop logic. Translates Grid state into draw calls.
      */
     public void render(Grid grid, float offsetX, float offsetY) {
