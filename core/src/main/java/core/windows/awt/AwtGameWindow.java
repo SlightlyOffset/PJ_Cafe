@@ -15,6 +15,7 @@ import core.rendering.WorldRenderer;
  * Satisfies OOP Requirement 1.1 (Graphics & Threads).
  */
 public class AwtGameWindow extends JFrame {
+    private static final int TILE_SIZE = 100;
     private final Grid grid;
     private final AwtRenderer awtRenderer;
     private final WorldRenderer worldRenderer;
@@ -34,7 +35,7 @@ public class AwtGameWindow extends JFrame {
         }
 
         awtRenderer = new AwtRenderer();
-        worldRenderer = new WorldRenderer(awtRenderer, 100);
+        worldRenderer = new WorldRenderer(awtRenderer, TILE_SIZE);
 
         setTitle("PJ Cafe - AWT Renderer (Grading Proof)");
         setSize(800, 600);
@@ -58,8 +59,8 @@ public class AwtGameWindow extends JFrame {
 
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     // 3. Convert to grid coordinates
-                    int gridX = (int) (relativeX / 100);
-                    int gridY = (int) (relativeY / 100);
+                    int gridX = (int) (relativeX / TILE_SIZE);
+                    int gridY = (int) (relativeY / TILE_SIZE);
 
                     // 4. Check if within bounds and rotate the tile
                     if (gridX >= 0 && gridX < grid.getCols() && gridY >= 0 && gridY < grid.getRows()) {
@@ -67,8 +68,8 @@ public class AwtGameWindow extends JFrame {
                     }
                 }
                 else if (e.getButton() == MouseEvent.BUTTON3) {
-                    int gridX = (int) (relativeX / 100);
-                    int gridY = (int) (relativeY / 100);
+                    int gridX = (int) (relativeX / TILE_SIZE);
+                    int gridY = (int) (relativeY / TILE_SIZE);
 
                     if (gridX >= 0 && gridX < grid.getCols() && gridY >= 0 && gridY < grid.getRows()) {
                         grid.getTiles()[gridY][gridX].rotateCounterClockwise();
