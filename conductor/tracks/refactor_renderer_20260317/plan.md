@@ -16,8 +16,8 @@ tags:
     - [x] Extend `BaseRenderer` instead of `IRenderer`.
 
 ## Phase 2: Bug Fixes & Refactoring
-- [ ] Task: Fix `AwtGameCanvas`.
-    - [ ] Ensure the call to `worldRenderer.clearScreen()` is consistent with the new implementation.
+- [x] Task: Fix `AwtGameCanvas`. e42f67f
+    - [x] Ensure the call to `worldRenderer.clearScreen()` is consistent with the new implementation.
 - [ ] Task: Update `GameScreen`.
     - [ ] Replace `gdxRenderer.clearScreen(...)` with `worldRenderer.clearScreen()`.
 
