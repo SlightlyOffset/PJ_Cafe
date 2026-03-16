@@ -96,7 +96,9 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.setProjectionMatrix(camera.combined);
 
         // 2. Delegate world rendering to WorldRenderer
-        ((GdxRenderer) renderer).setShapeRenderer(shapeRenderer);
+        if (renderer instanceof GdxRenderer) {
+            ((GdxRenderer) renderer).setShapeRenderer(shapeRenderer);
+        }
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         worldRenderer.render(grid, gridOffsetX, gridOffsetY);
         shapeRenderer.end();
