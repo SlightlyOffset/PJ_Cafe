@@ -31,6 +31,9 @@ public class AwtGameCanvas extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         awtRenderer.setGraphics(g2d, getWidth(), getHeight());
 
+        // Clear the screen using the WorldRenderer to match the GDX rendering path
+        worldRenderer.clearScreen();
+
         gridOffsetX = (getWidth() - grid.getCols() * 100) / 2f;
         gridOffsetY = (getHeight() - grid.getRows() * 100) / 2f;
 
