@@ -29,4 +29,4 @@ The project aims to develop a desktop-based puzzle game with a central mechanic 
 - **Platform:** Desktop (Windows/macOS/Linux via JVM).
 - **Technology Stack:** Java 20+, libGDX.
 - **OOP Principles:** Demonstrate clean object-oriented design (encapsulation, inheritance, polymorphism, and abstraction) as a reference for students.
-  - **Abstraction:** Use of custom interfaces (e.g., `IRenderer`) to abstract framework-specific dependencies.
+  - **Abstraction:** Use of custom interfaces (e.g., `IRenderer`) and abstract classes (e.g., `BaseRenderer`) to abstract framework-specific dependencies.

@@ -23,7 +23,7 @@ tags:
 ## Graphics & Rendering
 - **LWJGL (Lightweight Java Game Library):** Underpins libGDX's desktop backend for high-performance access to OpenGL.
 - **AWT/Swing (Standard Java):** Fallback backend used for grading compliance, providing a pure Java alternative for graphical rendering.
-- **Custom Rendering Bridge:** Pluggable `IRenderer` interface implemented by both `AwtRenderer` and `GdxRenderer`.
+- **Custom Rendering Bridge:** Pluggable `IRenderer` interface and `BaseRenderer` abstract class implemented/extended by both `AwtRenderer` and `GdxRenderer`.
 
 ## Testing Frameworks
 - **JUnit 5 (Jupiter):** Standard testing framework for Java, used for writing and running unit tests.
