@@ -6,11 +6,7 @@ import core.rendering.WorldRenderer;
 import core.windows.awt.AwtGameCanvas;
 import org.junit.jupiter.api.Test;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.mock;
 
 public class AwtGameCanvasTest {
 
