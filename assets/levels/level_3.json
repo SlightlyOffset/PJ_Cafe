@@ -1,7 +1,7 @@
 {
   "cols": 20,
   "rows": 13,
-  //"image":
+  //"image": "assets/Level3_BG.png",
   "tiles": [
     [ //1
       { "type": "EMPYT", "rotation": 0 }, //1
@@ -277,4 +277,4 @@
       { "type": "EMPYT", "rotation": 0 }  //19
     ],
   ]
-}
+} 

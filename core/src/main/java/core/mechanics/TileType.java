@@ -4,7 +4,7 @@ public enum TileType {
     STRAIGHT,
     L_TURN,
     T_JUNCTION,
-    CROSS, /*Not use*/
+    CROSS, /*didn't use*/
     STRAIGHT_ROTATABLE,
     L_TURN_ROTATABLE,
     T_JUNCTION_ROTATABLE,
