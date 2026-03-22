@@ -10,19 +10,19 @@ public enum TileType {
         boolean[] ports = new boolean[4];
         switch (this) {
             case STRAIGHT:
-                // เหนือ-ใต้
+                // North-South
                 ports[0] = ports[2] = true;
                 break;
             case L_TURN:
-                // เหนือ-ตะวันออก
+                // North-East
                 ports[0] = ports[1] = true;
                 break;
             case T_JUNCTION:
-                // เหนือ-ตะวันออก-ตะวันตก
+                // North-East-West
                 ports[0] = ports[1] = ports[3] = true;
                 break;
             case CROSS:
-                // ทุกทิศ
+                // All directions
                 ports[0] = ports[1] = ports[2] = ports[3] = true;
                 break;
         }
