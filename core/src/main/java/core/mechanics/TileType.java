@@ -36,14 +36,16 @@ public enum TileType {
             case L_TURN_ROTATABLE:
                 return new boolean[] { true, true, false, false };
             case T_JUNCTION:
-                // เหนือ-ตะวันออก-ตะวันตก
-                ports[0] = ports[1] = ports[3] = true;
-                break;
-            case CROSS:
-                // ทุกทิศ
-                ports[0] = ports[1] = ports[2] = ports[3] = true;
-                break;
+            case T_JUNCTION_ROTATABLE:
+                return new boolean[] { true, true, false, true };
+            case DEADEND:
+                return new boolean[] { true, false, false, false };
+            case TELEPORT:
+                return new boolean[] { true, true, true, true };
+            default:
+                return new boolean[] { false, false, false, false };
         }
+    }
 
     public boolean[] getConnections(int rotation) {
         int steps = (rotation / 90) % 4;
