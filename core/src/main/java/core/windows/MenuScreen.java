@@ -58,11 +58,11 @@ public class MenuScreen implements Screen {
 
         // Create a button style
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.up   = skin.newDrawable("background", new Color(0,0,0,0.01f));
-        buttonStyle.over = skin.newDrawable("background", new Color(1,1,1,0.15f));
+        buttonStyle.up      = skin.newDrawable("background", new Color(0,0,0,0.01f));
+        buttonStyle.over    = skin.newDrawable("background", new Color(1,1,1,0.15f));
         buttonStyle.checked = skin.newDrawable("background", com.badlogic.gdx.graphics.Color.BLUE);
-        buttonStyle.down = skin.newDrawable("background", new Color(1,1,1,0.3f));
-        buttonStyle.font = skin.getFont("default");
+        buttonStyle.down    = skin.newDrawable("background", new Color(1,1,1,0.3f));
+        buttonStyle.font    = skin.getFont("default");
         skin.add("default", buttonStyle);
         
         pixmap.dispose();
@@ -92,26 +92,18 @@ public class MenuScreen implements Screen {
     }
 
     private void setupUI() {
-        // have logo in the background
-        //if (assetManager.isLoaded("logo.png", Texture.class)) {
-        //    Image logo = new Image(assetManager.get("logo.png", Texture.class));
-        //    table.add(logo).padBottom(50).row(); // Move to next row after adding logo
-        //}
-
         // Load click sound
         if (assetManager.isLoaded("click.mp3", Sound.class)) {
             clickSound = assetManager.get("click.mp3", Sound.class);
         }
 
         // Create Buttons
-        Texture startUp = new Texture(Gdx.files.internal("buttons/Start_bttn.png"));
-        Texture startOver = new Texture(Gdx.files.internal("buttons/Startpress_bttn.png"));
-
-        Texture settingUp = new Texture(Gdx.files.internal("buttons/Setting_bttn.png"));
-        Texture settingOver = new Texture(Gdx.files.internal("buttons/Settingpress_bttn.png"));
-
-        Texture exitUp = new Texture(Gdx.files.internal("buttons/Exit_bttn.png"));
-        Texture exitOver = new Texture(Gdx.files.internal("buttons/Exitpress_bttn.png"));
+        Texture startUp = assetManager.get("buttons/Start_bttn.png", Texture.class);
+        Texture startOver = assetManager.get("buttons/Startpress_bttn.png", Texture.class);
+        Texture settingUp = assetManager.get("buttons/Setting_bttn.png", Texture.class);
+        Texture settingOver = assetManager.get("buttons/Settingpress_bttn.png", Texture.class);
+        Texture exitUp = assetManager.get("buttons/Exit_bttn.png", Texture.class);
+        Texture exitOver = assetManager.get("buttons/Exitpress_bttn.png", Texture.class);
 
         // Create ImageButton styles
         ImageButton.ImageButtonStyle startStyle = new ImageButton.ImageButtonStyle();
@@ -130,9 +122,6 @@ public class MenuScreen implements Screen {
         ImageButton startButton = new ImageButton(startStyle);
         ImageButton optionsButton = new ImageButton(optionsStyle);
         ImageButton exitButton = new ImageButton(exitStyle);
-        //TextButton startButton = new TextButton("Start", skin);
-        //TextButton optionsButton = new TextButton("Options", skin);
-        //TextButton exitButton = new TextButton("Exit", skin);
 
         //set position on button
         startButton.setPosition(823,565);
@@ -183,7 +172,7 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0, 1); // Clear the screen with black colorฃ
+        ScreenUtils.clear(0, 0, 0, 1); // Clear the screen with black color
         
         viewport.apply();
         
