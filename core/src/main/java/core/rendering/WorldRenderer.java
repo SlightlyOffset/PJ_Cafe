@@ -55,7 +55,7 @@ public class WorldRenderer {
     private void drawTilePaths(Tile tile, float px, float py) {
         float cx = px + tileSize / 2f;     // center X of the tile
         float cy = py + tileSize / 2f;     // center Y of the tile
-        float hw = 6;                      // half-width of the path line
+        float hw = 2;                      // half-width of the path line
 
         // Direction mapping: 0 = N, 1 = E, 2 = S, 3 = W
         boolean n = hasConnection(tile, 0);
@@ -78,6 +78,11 @@ public class WorldRenderer {
             case L_TURN     -> base = new boolean[]{true, true, false, false};
             case T_JUNCTION -> base = new boolean[]{true, true, false, true};
             case CROSS      -> base = new boolean[]{true, true, true, true};
+            case STRAIGHT_ROTATABLE   -> base = new boolean[]{true, false, true, false};
+            case L_TURN_ROTATABLE     -> base = new boolean[]{true, true, false, false};
+            case T_JUNCTION_ROTATABLE -> base = new boolean[]{true, true, false, true};
+            case TELEPORT      -> base = new boolean[]{true, true, true, true};
+            case WRONG_TELEPORT      -> base = new boolean[]{true, true, true, true};
             default         -> base = new boolean[]{false, false, false, false};
         }
         int steps = tile.getRotation() / 90;

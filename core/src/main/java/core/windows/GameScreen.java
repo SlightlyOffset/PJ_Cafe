@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 import core.mechanics.Grid;
 import core.mechanics.LevelLoader;
 import core.mechanics.PathPuzzleGame;
@@ -13,7 +14,7 @@ import core.rendering.IRenderer;
 import core.rendering.WorldRenderer;
 
 public class GameScreen extends ScreenAdapter {
-    private static final int TILE_SIZE = 100;
+    private static final int TILE_SIZE = 40;
     private final PathPuzzleGame game;
     private Grid grid;
     private ShapeRenderer shapeRenderer;
