@@ -9,17 +9,21 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import core.mechanics.PathPuzzleGame;
+
 
 public class MenuScreen implements Screen {
     private final AssetManager assetManager;
@@ -100,19 +104,45 @@ public class MenuScreen implements Screen {
         }
 
         // Create Buttons
-        TextButton startButton = new TextButton("Start", skin);
-        TextButton optionsButton = new TextButton("Options", skin);
-        TextButton exitButton = new TextButton("Exit", skin);
+        Texture startUp = new Texture(Gdx.files.internal("buttons/Start_bttn.png"));
+        Texture startOver = new Texture(Gdx.files.internal("buttons/Startpress_bttn.png"));
+
+        Texture settingUp = new Texture(Gdx.files.internal("buttons/Setting_bttn.png"));
+        Texture settingOver = new Texture(Gdx.files.internal("buttons/Settingpress_bttn.png"));
+
+        Texture exitUp = new Texture(Gdx.files.internal("buttons/Exit_bttn.png"));
+        Texture exitOver = new Texture(Gdx.files.internal("buttons/Exitpress_bttn.png"));
+
+        // Create ImageButton styles
+        ImageButton.ImageButtonStyle startStyle = new ImageButton.ImageButtonStyle();
+        startStyle.up = new TextureRegionDrawable(new TextureRegion(startUp));
+        startStyle.over = new TextureRegionDrawable(new TextureRegion(startOver));
+
+        ImageButton.ImageButtonStyle optionsStyle = new ImageButton.ImageButtonStyle();
+        optionsStyle.up = new TextureRegionDrawable(new TextureRegion(settingUp));
+        optionsStyle.over = new TextureRegionDrawable(new TextureRegion(settingOver));
+
+
+        ImageButton.ImageButtonStyle exitStyle = new ImageButton.ImageButtonStyle();
+        exitStyle.up = new TextureRegionDrawable(new TextureRegion(exitUp));
+        exitStyle.over = new TextureRegionDrawable(new TextureRegion(exitOver));
+
+        ImageButton startButton = new ImageButton(startStyle);
+        ImageButton optionsButton = new ImageButton(optionsStyle);
+        ImageButton exitButton = new ImageButton(exitStyle);
+        //TextButton startButton = new TextButton("Start", skin);
+        //TextButton optionsButton = new TextButton("Options", skin);
+        //TextButton exitButton = new TextButton("Exit", skin);
 
         //set position on button
-        startButton.setPosition(823,550);
+        startButton.setPosition(823,565);
         optionsButton.setPosition(821,288);
         exitButton.setPosition(1292,285);
 
         //set size on button
         startButton.setSize(910, 235);
-        optionsButton.setSize(442, 238);
-        exitButton.setSize(438, 242);
+        //optionsButton.setSize(442, 238);
+        //exitButton.setSize(438, 242);
 
 
         //add button to stage
