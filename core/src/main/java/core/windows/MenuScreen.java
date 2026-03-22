@@ -38,34 +38,6 @@ public class MenuScreen implements Screen {
     public MenuScreen(PathPuzzleGame game) {
         this.game = game;
         this.assetManager = game.assetManager;
-        initSkin();
-    }
-
-    private void initSkin() {
-        // Skip skin initialization in tests if Gdx.graphics is not available
-        if (Gdx.graphics == null) return;
-        
-        skin = new Skin();
-        // Create a default font
-        BitmapFont font = new BitmapFont();
-        skin.add("default", font);
-
-        // Create a basic texture for button background
-        Pixmap pixmap = new Pixmap(1000, 300, Pixmap.Format.RGBA8888);
-        pixmap.setColor(new Color(0,0,0,0.01f)); //no color, fully transparent
-        pixmap.fill();
-        skin.add("background", new Texture(pixmap));
-
-        // Create a button style
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.up      = skin.newDrawable("background", new Color(0,0,0,0.01f));
-        buttonStyle.over    = skin.newDrawable("background", new Color(1,1,1,0.15f));
-        buttonStyle.checked = skin.newDrawable("background", com.badlogic.gdx.graphics.Color.BLUE);
-        buttonStyle.down    = skin.newDrawable("background", new Color(1,1,1,0.3f));
-        buttonStyle.font    = skin.getFont("default");
-        skin.add("default", buttonStyle);
-        
-        pixmap.dispose();
     }
 
     @Override
@@ -80,7 +52,7 @@ public class MenuScreen implements Screen {
         //table.right();  // Align the table to the right side per spec
         //stage.addActor(table);
 
-        // Add Logo and Buttons to the table
+        // Add Buttons to the stage
         setupUI();
 
         // Play background music if loaded
