@@ -20,6 +20,12 @@ public class PathPuzzleGame extends Game {
         assetManager.load("background.png", Texture.class);
         assetManager.load("menu_bgm.mp3", Music.class);
         assetManager.load("click.mp3", Sound.class);
+        assetManager.load("buttons/Start_bttn.png", Texture.class);
+        assetManager.load("buttons/Startpress_bttn.png", Texture.class);
+        assetManager.load("buttons/Setting_bttn.png", Texture.class);
+        assetManager.load("buttons/Settingpress_bttn.png", Texture.class);
+        assetManager.load("buttons/Exit_bttn.png", Texture.class);
+        assetManager.load("buttons/Exitpress_bttn.png", Texture.class);
         assetManager.finishLoading();
 
         setScreen(new MenuScreen(this)); // Pass the game instance to MenuScreen
