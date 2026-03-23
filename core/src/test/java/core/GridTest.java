@@ -79,4 +79,31 @@ public class GridTest {
             }
         }
     }
+
+    @Test
+    public void testSimpleStraightPath() {
+        Grid grid = new Grid(3, 1);
+        Tile[][] tiles = new Tile[1][3];
+
+        for (int i = 0; i < 3; i++) {
+            tiles[0][i] = new Tile(TileType.STRAIGHT);
+            tiles[0][i].rotateClockwise();
+        }
+        grid.setTiles(tiles);
+        assertTrue(grid.isPathComplete());
+    }
+
+    @Test
+    public void testBlockedPath() {
+        Grid grid = new Grid(2, 2);
+        Tile[][] tiles = new Tile[2][2];
+
+        tiles[0][0] = new Tile(TileType.STRAIGHT);
+        tiles[0][1] = new Tile(TileType.STRAIGHT);
+        tiles[1][0] = new Tile(TileType.STRAIGHT);
+        tiles[1][1] = new Tile(TileType.STRAIGHT);
+
+        grid.setTiles(tiles);
+        assertFalse(grid.isPathComplete());
+    }
 }
