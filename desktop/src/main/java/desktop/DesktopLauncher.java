@@ -11,6 +11,7 @@ public class DesktopLauncher {
         config.setForegroundFPS(60);
         config.setTitle("P'J Cafe - Puzzle Game");
         config.setWindowedMode(1920 , 1080);
+        config.setResizable(false);
         config.useVsync(true);
         new Lwjgl3Application(new PathPuzzleGame(), config);
     }
