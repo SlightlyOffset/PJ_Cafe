@@ -52,17 +52,18 @@ public class MenuScreen implements Screen {
         setupUI();
 
         // Play background music if loaded
-        if (assetManager.isLoaded("menu_bgm.mp3", Music.class)) {
-            music = assetManager.get("menu_bgm.mp3", Music.class);
+        if (assetManager.isLoaded("sounds/menu_bgm.mp3", Music.class)) {
+            music = assetManager.get("sounds/menu_bgm.mp3", Music.class);
             music.setLooping(true);
-            music.play();
+            if (!music.isPlaying())
+                music.play();
         }
     }
 
     private void setupUI() {
         // Load click sound
-        if (assetManager.isLoaded("click.mp3", Sound.class)) {
-            clickSound = assetManager.get("click.mp3", Sound.class);
+        if (assetManager.isLoaded("sounds/click.mp3", Sound.class)) {
+            clickSound = assetManager.get("sounds/click.mp3", Sound.class);
         }
 
         // Create Buttons
@@ -111,8 +112,9 @@ public class MenuScreen implements Screen {
         startButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (clickSound != null) clickSound.play(game.sfxVolume);
-                game.setScreen(new GameScreen(game)); // Start the game -> Transition to GameScreen
+                if (clickSound != null) clickSound.play();
+                game.setScreen(new LevelSelectionScreen(game)); // Start the game -> Transition to LevelSelectionScreen
+                dispose();
             }
         });
 
@@ -146,8 +148,8 @@ public class MenuScreen implements Screen {
         
         // Draw background if we have one
         stage.getBatch().begin();
-        if (assetManager.isLoaded("background.png", Texture.class)) {
-            stage.getBatch().draw(assetManager.get("background.png", Texture.class), 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        if (assetManager.isLoaded("images/background.png", Texture.class)) {
+            stage.getBatch().draw(assetManager.get("images/background.png", Texture.class), 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         }
         stage.getBatch().end();
 

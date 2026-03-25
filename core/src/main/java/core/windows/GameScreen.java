@@ -1,6 +1,5 @@
 package core.windows;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import core.mechanics.Grid;
 import core.mechanics.LevelLoader;
 import core.mechanics.PathPuzzleGame;
-import core.mechanics.Tile;
 import core.rendering.GdxRenderer;
 import core.rendering.IRenderer;
 import core.rendering.WorldRenderer;
@@ -23,13 +21,6 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private float gridOffsetX;
     private float gridOffsetY;
-    private final String levelPath;
-    private static final String[] LEVELS = {
-        //  Put all level here
-        "levels/level_1.json",
-        "levels/level_2.json",
-        "levels/level_3.json",
-    };
     private final int currentLevelIndex;
 
     // Pluggable Rendering components
@@ -46,7 +37,6 @@ public class GameScreen extends ScreenAdapter {
 
     public GameScreen(PathPuzzleGame game, String levelPath, int levelIndex) {
         this.game = game;
-        this.levelPath = levelPath;
         this.currentLevelIndex = levelIndex;
 
         // 1. Create and fill the grid
@@ -59,8 +49,7 @@ public class GameScreen extends ScreenAdapter {
         }
 
         // 2. Initialize Pluggable Renderer
-        GdxRenderer gdxRenderer = new GdxRenderer();
-        this.renderer = gdxRenderer;
+        this.renderer = new GdxRenderer();
         worldRenderer = new WorldRenderer(renderer, TILE_SIZE);
 
         // 3. Set up camera (false = Y go upward)
@@ -85,8 +74,8 @@ public class GameScreen extends ScreenAdapter {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if (grid.isSolved()) {
                     int nextIndex = currentLevelIndex + 1;
-                    if (nextIndex < LEVELS.length) {
-                        game.setScreen(new GameScreen(game, LEVELS[nextIndex], nextIndex));
+                    if (nextIndex < PathPuzzleGame.LEVELS.length) {
+                        game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[nextIndex], nextIndex));
                     }
                     else {
                         game.setScreen(new MenuScreen(game));

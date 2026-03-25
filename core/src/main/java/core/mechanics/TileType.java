@@ -9,6 +9,7 @@ public enum TileType {
     T_JUNCTION_ROTATABLE,
     DEADEND,
     TELEPORT,
+    CROSS,
     WRONG_TELEPORT,
     EMPTY;
 
@@ -41,6 +42,7 @@ public enum TileType {
             case DEADEND:
                 return new boolean[] { true, false, false, false };
             case TELEPORT:
+            case CROSS:
                 return new boolean[] { true, true, true, true };
             default:
                 return new boolean[] { false, false, false, false };
