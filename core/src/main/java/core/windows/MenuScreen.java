@@ -55,7 +55,8 @@ public class MenuScreen implements Screen {
         if (assetManager.isLoaded("sounds/menu_bgm.mp3", Music.class)) {
             music = assetManager.get("sounds/menu_bgm.mp3", Music.class);
             music.setLooping(true);
-            music.play();
+            if (!music.isPlaying())
+                music.play();
         }
     }
 
@@ -113,6 +114,7 @@ public class MenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play();
                 game.setScreen(new LevelSelectionScreen(game)); // Start the game -> Transition to LevelSelectionScreen
+                dispose();
             }
         });
 
