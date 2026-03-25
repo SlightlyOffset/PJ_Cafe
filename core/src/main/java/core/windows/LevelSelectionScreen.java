@@ -24,28 +24,28 @@ public class LevelSelectionScreen implements Screen {
 
     private final AssetManager assetManager;
     private final PathPuzzleGame game;
-    private Stage stage;
-    private Viewport viewport;
+    private final Stage stage;
+    private final Viewport viewport;
     private Skin skin;
     private Sound clickSound;
 
     public LevelSelectionScreen(PathPuzzleGame game) {
         this.game = game;
         this.assetManager = game.assetManager;
-    }
 
+        viewport = new FitViewport(1920, 1080);
+        stage = new Stage(viewport);
+
+        initBasicSkin();
+        initUI();
+    }
     @Override
     public void show() {
         if (assetManager.isLoaded("sounds/click.mp3", Sound.class)) {
             clickSound = assetManager.get("sounds/click.mp3", Sound.class);
         }
 
-        viewport = new FitViewport(1920, 1080);
-        stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
-
-        initBasicSkin();
-        initUI();
 
         if (assetManager.isLoaded("sounds/menu_bgm.mp3", Music.class)) {
             Music music = assetManager.get("sounds/menu_bgm.mp3", Music.class);
@@ -90,7 +90,7 @@ public class LevelSelectionScreen implements Screen {
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                clickSound.play();
+                if (clickSound != null) clickSound.play();
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -99,8 +99,8 @@ public class LevelSelectionScreen implements Screen {
 
         // Level Slips
         Table levelTable = new Table();
-        for (int i = 0; i < game.LEVELS.length; i++) {
-            final String levelName = game.LEVELS[i];
+        for (int i = 0; i < PathPuzzleGame.LEVELS.length; i++) {
+            final String levelName = PathPuzzleGame.LEVELS[i];
             final int levelIndex = i;
             final int levelNum = i + 1;
 
@@ -108,9 +108,9 @@ public class LevelSelectionScreen implements Screen {
             btn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    clickSound.play();
+                    if (clickSound != null) clickSound.play();
                     Gdx.app.log("LevelSelection", "Loading Level: " + levelName);
-                    game.setScreen(new GameScreen(game, game.LEVEL_PATH + levelName, levelIndex));
+                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + levelName, levelIndex));
                 }
             });
             levelTable.add(btn).width(230).height(400).pad(70);
