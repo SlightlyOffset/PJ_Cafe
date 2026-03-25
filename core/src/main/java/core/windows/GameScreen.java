@@ -23,13 +23,6 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private float gridOffsetX;
     private float gridOffsetY;
-    private final String levelPath;
-    private static final String[] LEVELS = {
-        //  Put all level here
-        "levels/level_1.json",
-        "levels/level_2.json",
-        "levels/level_3.json",
-    };
     private final int currentLevelIndex;
 
     // Pluggable Rendering components
@@ -46,7 +39,6 @@ public class GameScreen extends ScreenAdapter {
 
     public GameScreen(PathPuzzleGame game, String levelPath, int levelIndex) {
         this.game = game;
-        this.levelPath = levelPath;
         this.currentLevelIndex = levelIndex;
 
         // 1. Create and fill the grid
@@ -85,8 +77,8 @@ public class GameScreen extends ScreenAdapter {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if (grid.isSolved()) {
                     int nextIndex = currentLevelIndex + 1;
-                    if (nextIndex < LEVELS.length) {
-                        game.setScreen(new GameScreen(game, LEVELS[nextIndex], nextIndex));
+                    if (nextIndex < game.LEVELS.length) {
+                        game.setScreen(new GameScreen(game, game.LEVEL_PATH + game.LEVELS[nextIndex], nextIndex));
                     }
                     else {
                         game.setScreen(new MenuScreen(game));
