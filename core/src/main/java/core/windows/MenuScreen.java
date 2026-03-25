@@ -121,15 +121,15 @@ public class MenuScreen implements Screen {
         optionsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (clickSound != null) clickSound.play();
-                Gdx.app.log("MenuScreen", "Options button clicked - placeholder");
+                if (clickSound != null) clickSound.play(game.sfxVolume);;
+                game.setScreen(new SettingScreen(game)); // Transition to SettingScreen
             }
         });
 
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (clickSound != null) clickSound.play();
+                if (clickSound != null) clickSound.play(game.sfxVolume);;
                 Gdx.app.exit(); // Exit the game
             }
         });
