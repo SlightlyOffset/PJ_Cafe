@@ -10,7 +10,8 @@ import core.windows.MenuScreen;
 
 public class PathPuzzleGame extends Game {
     public AssetManager assetManager;
-
+    public float sfxVolume = 1f;
+    public float musicVolume = 1f;
     @Override
     public void create() {
         assetManager = new AssetManager();
@@ -26,6 +27,11 @@ public class PathPuzzleGame extends Game {
         assetManager.load("buttons/Settingpress_bttn.png", Texture.class);
         assetManager.load("buttons/Exit_bttn.png", Texture.class);
         assetManager.load("buttons/Exitpress_bttn.png", Texture.class);
+        assetManager.load("setting/BackgroundSetting.png", Texture.class);   
+        assetManager.load("setting/Save_bttn.png", Texture.class);
+        assetManager.load("setting/Savepress_bttn.png", Texture.class);
+        assetManager.load("setting/Exit_bttn.png", Texture.class);
+        assetManager.load("setting/Exitpress_bttn.png", Texture.class);
         assetManager.finishLoading();
 
         setScreen(new MenuScreen(this)); // Pass the game instance to MenuScreen
