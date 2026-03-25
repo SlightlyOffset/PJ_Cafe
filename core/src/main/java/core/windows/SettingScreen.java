@@ -47,7 +47,6 @@ public class SettingScreen implements Screen {
     }
 
 private void initSkin() {
-    if (Gdx.graphics == null) return;
 
     skin = new Skin();
 
@@ -177,11 +176,14 @@ private void initSkin() {
         public void clicked(InputEvent event, float x, float y) {
             if (clickSound != null) clickSound.play(sfxVolume);
 
+            
             game.sfxVolume = sfxVolume;
             game.musicVolume = musicSlider.getValue();
 
             game.setScreen(new MenuScreen(game));
+            dispose();
         }
+    
         });
 
         sfxSlider.addListener(new ChangeListener() {
@@ -211,6 +213,7 @@ private void initSkin() {
             }
 
             game.setScreen(new MenuScreen(game));
+            dispose();
         }
     });
     }
