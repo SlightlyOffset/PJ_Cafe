@@ -154,7 +154,11 @@ public class GameScreen extends ScreenAdapter {
         shapeRenderer.end();
         //for Thread time
         batch.begin();
-        font.draw(batch, "Time: " + timer.getFormattedTime(),20, Gdx.graphics.getHeight() - 20);
+        //for Thread time
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        font.draw(batch, "Time: " + timer.getFormattedTime(), 20, Gdx.graphics.getHeight() - 20);
+        batch.end();
         batch.end();
     }
 
