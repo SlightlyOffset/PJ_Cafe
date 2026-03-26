@@ -1,6 +1,10 @@
 {
   "cols": 19,
   "rows": 13,
+  "startX": 4,
+  "startY": 6,
+  "endX": 16,
+  "endY": 10,
   //"image": "assets/Level2_BG.png",
   "tiles": [
     [ //1

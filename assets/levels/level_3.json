@@ -1,6 +1,10 @@
 {
   "cols": 19,
   "rows": 13,
+  "startX": 7,
+  "startY": 2,
+  "endX": 12,
+  "endY": 7,
   //"image": "assets/Level3_BG.png",
   "tiles": [
     [ //1
@@ -53,7 +57,7 @@
       { "type": "EMPTY", "rotation": 0 }, //5
       { "type": "EMPTY", "rotation": 0 }, //6
       { "type": "EMPTY", "rotation": 0 }, //7
-      { "type": "EMPTY", "rotation": 0 }, //8
+      { "type": "STRAIGHT","rotation": 90}, //8
       { "type": "EMPTY", "rotation": 0 }, //9
       { "type": "EMPTY", "rotation": 0 }, //10
       { "type": "EMPTY", "rotation": 0 }, //11
