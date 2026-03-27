@@ -24,7 +24,7 @@ public enum TileType {
     TELEPORT,
     /** A path that connects in all four directions. */
     CROSS,
-    /** A decorative tile that looks like a teleport but is a dead end. */
+    /** A decorative tile that looks like a teleport but has no connections. */
     WRONG_TELEPORT,
     /** An empty tile with no connections. */
     EMPTY;
