@@ -9,15 +9,19 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
 import core.mechanics.PathPuzzleGame;
 
 /**
@@ -107,7 +111,7 @@ public class LevelSelectionScreen implements Screen {
     /**
      * Constructs the UI layout using Scene2D Tables.
      * Includes a navigation bar with a 'Back' button and a grid of level 'Order' buttons
-     * generated dynamically from the {@link PathPuzzleGame#LEVELS} array.
+     * generated dynamically from the {@link PathPuzzleGame#LEVELS} array.*******************************
      */
     private void initUI() {
         Table rootTable = new Table();
@@ -116,7 +120,21 @@ public class LevelSelectionScreen implements Screen {
 
         // Top bar for Back button
         Table topTable = new Table();
-        TextButton backBtn = new TextButton("<-- Back", skin);
+        // Create Buttons
+        ImageButton.ImageButtonStyle BackStyle = new ImageButton.ImageButtonStyle();
+        ImageButton.ImageButtonStyle SettingStyle = new ImageButton.ImageButtonStyle();
+        // Create ImageButton styles
+        Texture Back = assetManager.get("buttons/Arrow.png", Texture.class);
+        Texture Backpress = assetManager.get("buttons/Arrow_press.png", Texture.class);
+        Texture Setting = assetManager.get("buttons/setting.png", Texture.class);
+
+        BackStyle.up = new TextureRegionDrawable(new TextureRegion(Back));
+        BackStyle.over = new TextureRegionDrawable(new TextureRegion(Backpress));
+        SettingStyle.up = new TextureRegionDrawable(new TextureRegion(Setting));
+        ImageButton backBtn = new ImageButton(BackStyle);
+        ImageButton SettingBtn = new ImageButton(SettingStyle);
+
+        // Add listeners for interaction
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -125,8 +143,18 @@ public class LevelSelectionScreen implements Screen {
                 dispose();
             }
         });
-        topTable.add(backBtn).left().pad(30).width(250).height(100);
-        rootTable.add(topTable).expandX().top().left().row();
+        SettingBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (clickSound != null) clickSound.play(game.sfxVolume);
+                game.setScreen(new SettingScreen(game));
+                dispose();
+            }
+        });
+        topTable.add(backBtn).left().pad(30).width(143).height(100);
+        topTable.add().expandX(); 
+        topTable.add(SettingBtn).right().pad(30).width(121).height(100);
+        rootTable.add(topTable).fillX().expandX().top().row();
 
         // Level Slips
         Table levelTable = new Table();

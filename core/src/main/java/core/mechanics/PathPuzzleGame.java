@@ -45,6 +45,9 @@ public class PathPuzzleGame extends Game {
         assetManager.load("buttons/Settingpress_bttn.png", Texture.class);
         assetManager.load("buttons/Exit_bttn.png", Texture.class);
         assetManager.load("buttons/Exitpress_bttn.png", Texture.class);
+        assetManager.load("buttons/Arrow.png", Texture.class);
+        assetManager.load("buttons/Arrow_press.png", Texture.class);
+        assetManager.load("buttons/setting.png", Texture.class);
         assetManager.load("setting/BackgroundSetting.png", Texture.class);   
         assetManager.load("setting/Save_bttn.png", Texture.class);
         assetManager.load("setting/Savepress_bttn.png", Texture.class);
