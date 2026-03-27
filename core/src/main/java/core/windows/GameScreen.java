@@ -181,8 +181,9 @@ public class GameScreen extends ScreenAdapter {
     }
 
     /**
-     * @param width
-     * @param height
+     * Called when the application is resized.
+     * @param width The new width of the screen in pixels.
+     * @param height The new height of the screen in pixels.
      * @see com.badlogic.gdx.ApplicationListener#resize(int, int)
      */
     @Override
