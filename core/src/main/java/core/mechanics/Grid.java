@@ -11,6 +11,7 @@ public class Grid {
 
     // start(x, y), end(x, y)
     private int startX, startY, endX, endY;
+    private String backgroundImage;
 
     public Grid() {
         this.cols = 0;
@@ -87,6 +88,14 @@ public class Grid {
 
     public void setSolved(boolean solved) {
         this.isSolved = solved;
+    }
+
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
     }
 
     // Randomly initialize tiles <-- for testing purposes
