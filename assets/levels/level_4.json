@@ -1,6 +1,10 @@
 {
   "cols": 19,
   "rows": 13,
+  "startX": 9,
+  "startY": 3,
+  "endX": 15,
+  "endY": 9,
   //"image": "assets/Level4_BG.png",
   "tiles": [
     [ //1

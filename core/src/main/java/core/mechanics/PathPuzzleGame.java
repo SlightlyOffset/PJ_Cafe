@@ -13,7 +13,7 @@ public class PathPuzzleGame extends Game {
     public float musicVolume = 1.0f;
     public float sfxVolume = 1.0f;
     public static final String LEVEL_PATH = "levels/";
-    public static final String[] LEVELS = {"level_1.json", "level_2.json", "level_3.json",};
+    public static final String[] LEVELS = {"level_1.json", "level_2.json", "level_3.json", "level_4.json"};
 
     @Override
     public void create() {

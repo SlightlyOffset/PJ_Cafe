@@ -2,10 +2,10 @@
   "cols": 19,
   "rows": 13,
   "startX": 7,
-  "startY": 2,
+  "startY": 3,
   "endX": 13,
   "endY": 7,
-  //"image": "assets/Level3_BG.png",
+  // "image": "assets/Level3_BG.png",
   "tiles": [
     [ //1
       { "type": "EMPTY", "rotation": 0 }, //1
