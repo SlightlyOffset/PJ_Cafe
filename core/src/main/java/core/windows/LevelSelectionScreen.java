@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -70,9 +69,7 @@ public class LevelSelectionScreen implements Screen {
         if (assetManager.isLoaded("sounds/click.mp3", Sound.class)) {
             clickSound = assetManager.get("sounds/click.mp3", Sound.class);
         }
-
         Gdx.input.setInputProcessor(stage);
-
         if (assetManager.isLoaded("sounds/menu_bgm.mp3", Music.class)) {
             Music music = assetManager.get("sounds/menu_bgm.mp3", Music.class);
             music.setVolume(game.musicVolume);
@@ -87,7 +84,6 @@ public class LevelSelectionScreen implements Screen {
      */
     private void initBasicSkin() {
         skin = new Skin();
-
         BitmapFont font = new BitmapFont();
         font.getData().setScale(3); 
         skin.add("default", font);
@@ -95,8 +91,7 @@ public class LevelSelectionScreen implements Screen {
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.WHITE);
         pixmap.fill();
-        Texture whiteTexture = new Texture(pixmap);
-        skin.add("white", whiteTexture);
+        skin.add("white", new Texture(pixmap));
         pixmap.dispose();
 
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -104,36 +99,19 @@ public class LevelSelectionScreen implements Screen {
         textButtonStyle.down = skin.newDrawable("white", new Color(0, 0, 0, 0.3f));
         textButtonStyle.font = skin.getFont("default");
         textButtonStyle.fontColor = Color.BLACK;
-
         skin.add("default", textButtonStyle);
     }
 
-    /**
-     * Constructs the UI layout using Scene2D Tables.
-     * Includes a navigation bar with a 'Back' button and a grid of level 'Order' buttons
-     * generated dynamically from the {@link PathPuzzleGame#LEVELS} array.*******************************
-     */
     private void initUI() {
-        Table rootTable = new Table();
-        rootTable.setFillParent(true);
-        stage.addActor(rootTable);
-
-        // Top bar for Back button
-        // Create Buttons
-        ImageButton.ImageButtonStyle BackStyle = new ImageButton.ImageButtonStyle();
-        ImageButton.ImageButtonStyle SettingStyle = new ImageButton.ImageButtonStyle();
-        // Create ImageButton styles
+        // --- ส่วน Setting & Back ---
         Texture Back = assetManager.get("buttons/Arrow.png", Texture.class);
         Texture Backpress = assetManager.get("buttons/Arrow_press.png", Texture.class);
         Texture Setting = assetManager.get("buttons/setting.png", Texture.class);
 
-        BackStyle.up = new TextureRegionDrawable(new TextureRegion(Back));
-        BackStyle.over = new TextureRegionDrawable(new TextureRegion(Backpress));
-        SettingStyle.up = new TextureRegionDrawable(new TextureRegion(Setting));
-        ImageButton backBtn = new ImageButton(BackStyle);
-        ImageButton SettingBtn = new ImageButton(SettingStyle);
+        ImageButton backBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion(Back)), 
+                                             new TextureRegionDrawable(new TextureRegion(Backpress)));
+        ImageButton settingBtn = new ImageButton(new TextureRegionDrawable(new TextureRegion(Setting)));
 
-        // Add listeners for interaction
         backBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -142,72 +120,66 @@ public class LevelSelectionScreen implements Screen {
                 dispose();
             }
         });
-        SettingBtn.addListener(new ClickListener() {
+        settingBtn.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);
                 game.setScreen(new SettingScreen(game, LevelSelectionScreen.this));
-                
             }
         });
+
         backBtn.setSize(143, 100);
         backBtn.setPosition(20, 975);
+        settingBtn.setSize(121, 100);
+        settingBtn.setPosition(1800, 975);
 
-        SettingBtn.setSize(121, 100);
-        SettingBtn.setPosition(1800,975);
         stage.addActor(backBtn);
-        stage.addActor(SettingBtn);
+        stage.addActor(settingBtn);
 
-
-
-        //Level bttn
-        // 1. เตรียม Resource รูปภาพ
-    String[] billPaths = {"LevelSel/Bill1.png", "LevelSel/Bill2.png", "LevelSel/Bill3.png", "LevelSel/Bill4.png"};
-    String[] completePaths = {"LevelSel/Bill1_complete.png", "LevelSel/Bill2_complete.png", "LevelSel/Bill3_complete.png", "LevelSel/Bill4_complete.png"};
-    
-    float startX = 200; // ตำแหน่ง X เริ่มต้น
-    float spacing = 400; // ระยะห่างระหว่างปุ่ม
-
-    for (int i = 0; i < 4; i++) { // สมมติว่ามี 4 เลเวล
-        final int levelIndex = i;
+        // --- ส่วน Level Buttons (Bills) ---
+        String[] billPaths = {"LevelSel/Bill1.png", "LevelSel/Bill2.png", "LevelSel/Bill3.png", "LevelSel/Bill4.png"};
+        String[] completePaths = {"LevelSel/Bill1_complete.png", "LevelSel/Bill2_complete.png", "LevelSel/Bill3_complete.png", "LevelSel/Bill4_complete.png"};
         
-        // 2. สร้าง Style โดยเช็คสถานะเลเวล
-        Texture normalTex = assetManager.get(billPaths[i], Texture.class);
-        Texture completeTex = assetManager.get(completePaths[i], Texture.class);
-        
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-        
-        // ถ้าเลเวลนี้ "ผ่านแล้ว" ให้ใช้รูป Complete เป็นรูปหลัก (up)
-        // (คุณสามารถปรับ logic ตรงนี้ตามต้องการ เช่น ถ้าผ่านแล้วให้เปลี่ยนรูป)
-        if (PathPuzzleGame.unlockedLevels[i]) { 
-            style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
+        float startX = 200;
+        float spacing = 400;
+
+        for (int i = 0; i < 4; i++) {
+            final int levelIndex = i;
+            Texture normalTex = assetManager.get(billPaths[i], Texture.class);
+            Texture completeTex = assetManager.get(completePaths[i], Texture.class);
+            
+            ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+
+            if (PathPuzzleGame.unlockedLevels[i]) { 
+                style.up = new TextureRegionDrawable(new TextureRegion(completeTex));
+            } else {
+                style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
+            }
             style.down = new TextureRegionDrawable(new TextureRegion(completeTex));
-        } else {
-            // ถ้ายังไม่ปลดล็อค อาจจะใช้สีเทา หรือรูปเดิมแต่กดไม่ได้
-            style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
+
+            ImageButton billBtn = new ImageButton(style);
+            billBtn.setSize(314, 474);
+            billBtn.setPosition(startX + (i * spacing), 465);
+
+            boolean isUnlocked = (i == 0) || PathPuzzleGame.unlockedLevels[i];
+
+            if (!isUnlocked) {
+                billBtn.setDisabled(true);
+                billBtn.setColor(0.5f, 0.5f, 0.5f, 1f);
+            } else {
+                billBtn.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        if (clickSound != null) clickSound.play(game.sfxVolume);
+                        game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[levelIndex], levelIndex));
+                        dispose();
+                    }
+                });
+            }
+            stage.addActor(billBtn);
         }
+    } // จบ initUI()
 
-        ImageButton billBtn = new ImageButton(style);
-        billBtn.setSize(314, 474);
-        billBtn.setPosition(startX + (i * spacing), 465);
-
-        // 3. จัดการสถานะการกด (Disabled)
-        if (!PathPuzzleGame.unlockedLevels[i]) {
-            billBtn.setDisabled(true);
-            billBtn.setColor(Color.GRAY); // ทำให้ปุ่มดูจางลงถ้ายังไม่ปลดล็อค
-        } else {
-            billBtn.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (clickSound != null) clickSound.play(game.sfxVolume);
-                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[levelIndex], levelIndex));
-                    dispose();
-                }
-            });
-        }
-
-        stage.addActor(billBtn);
-    }
 }
 
     /**
@@ -220,16 +192,13 @@ public class LevelSelectionScreen implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(1, 1, 1, 1);
-
         viewport.apply();
-
         stage.getBatch().begin();
         if (assetManager.isLoaded("images/LevelSelBG.png", Texture.class)) {
             stage.getBatch().draw(assetManager.get("images/LevelSelBG.png", Texture.class), 
                 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         }
         stage.getBatch().end();
-
         stage.act(delta);
         stage.draw();
     }
