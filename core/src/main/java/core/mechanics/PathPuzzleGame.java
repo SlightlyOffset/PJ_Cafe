@@ -86,6 +86,7 @@ public class PathPuzzleGame extends Game {
         assetManager.load("tiletype/TELEPORT.PNG", Texture.class);  
         assetManager.load("tiletype/WRONG_TELEPORT.PNG", Texture.class);
         assetManager.load("tiletype/end.PNG", Texture.class);
+        assetManager.load("tiletype/start.PNG", Texture.class);
 
         assetManager.finishLoading();
 
