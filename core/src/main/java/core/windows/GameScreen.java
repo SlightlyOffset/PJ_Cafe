@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -21,8 +20,8 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import core.mechanics.Grid;
-import core.mechanics.LevelLoader; //Thread time
-import core.mechanics.PathPuzzleGame;
+import core.mechanics.LevelLoader;
+import core.mechanics.PathPuzzleGame; //Thread time
 import core.mechanics.PlaytimeTimer;
 import core.rendering.GdxRenderer;
 import core.rendering.IRenderer;
@@ -136,10 +135,10 @@ public class GameScreen extends ScreenAdapter {
         if (timer == null) {
             timer = new PlaytimeTimer();
             timer.start();
+            timer.resume();
         }
 
         timer.reset(); //reset time in new level
-        timer.resume();
         com.badlogic.gdx.InputMultiplexer multiplexer = new com.badlogic.gdx.InputMultiplexer();
         multiplexer.addProcessor(stage);
         // 6. Register click input
@@ -217,8 +216,8 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);
-                game.setScreen(new SettingScreen(game));
-                dispose();
+                game.setScreen(new SettingScreen(game, GameScreen.this));
+                
             }
         });
         stage.addActor(backBtn);
@@ -340,6 +339,7 @@ public class GameScreen extends ScreenAdapter {
             if (currentLevelIndex + 1 < PathPuzzleGame.LEVELS.length) {
                         PathPuzzleGame.unlockedLevels[currentLevelIndex + 1] = true;
                     }
+            game.saveProgress();
             game.setScreen(new CompleteScreen(game, currentLevelIndex));
             dispose();
         }

@@ -147,8 +147,8 @@ public class LevelSelectionScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);
-                game.setScreen(new SettingScreen(game));
-                dispose();
+                game.setScreen(new SettingScreen(game, LevelSelectionScreen.this));
+                
             }
         });
         topTable.add(backBtn).left().pad(30).width(143).height(100);
