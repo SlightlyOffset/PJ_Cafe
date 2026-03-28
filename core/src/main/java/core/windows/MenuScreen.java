@@ -118,7 +118,7 @@ public class MenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);
                 game.setScreen(new LevelSelectionScreen(game)); // Start the game -> Transition to LevelSelectionScreen
-                dispose();
+                
             }
         });
 
@@ -126,7 +126,7 @@ public class MenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);;
-                game.setScreen(new SettingScreen(game)); // Transition to SettingScreen
+                game.setScreen(new SettingScreen(game, MenuScreen.this)); // Transition to SettingScreen
             }
         });
 

@@ -135,10 +135,10 @@ public class GameScreen extends ScreenAdapter {
         if (timer == null) {
             timer = new PlaytimeTimer();
             timer.start();
+            timer.resume();
         }
 
         timer.reset(); //reset time in new level
-        timer.resume();
         com.badlogic.gdx.InputMultiplexer multiplexer = new com.badlogic.gdx.InputMultiplexer();
         multiplexer.addProcessor(stage);
         // 6. Register click input
@@ -216,8 +216,8 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);
-                game.setScreen(new SettingScreen(game));
-                dispose();
+                game.setScreen(new SettingScreen(game, GameScreen.this));
+                
             }
         });
         stage.addActor(backBtn);
