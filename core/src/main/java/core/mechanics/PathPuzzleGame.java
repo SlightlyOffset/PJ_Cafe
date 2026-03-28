@@ -45,11 +45,22 @@ public class PathPuzzleGame extends Game {
         assetManager.load("buttons/Settingpress_bttn.png", Texture.class);
         assetManager.load("buttons/Exit_bttn.png", Texture.class);
         assetManager.load("buttons/Exitpress_bttn.png", Texture.class);
+        assetManager.load("buttons/Arrow.png", Texture.class);
+        assetManager.load("buttons/Arrow_press.png", Texture.class);
+        assetManager.load("buttons/setting.png", Texture.class);
         assetManager.load("setting/BackgroundSetting.png", Texture.class);   
         assetManager.load("setting/Save_bttn.png", Texture.class);
         assetManager.load("setting/Savepress_bttn.png", Texture.class);
         assetManager.load("setting/Exit_bttn.png", Texture.class);
         assetManager.load("setting/Exitpress_bttn.png", Texture.class);
+        assetManager.load("LevelSel/Bill1.png", Texture.class);
+        assetManager.load("LevelSel/Bill1_complete.png", Texture.class);
+        assetManager.load("LevelSel/Bill2.png", Texture.class);
+        assetManager.load("LevelSel/Bill2_complete.png", Texture.class);
+        assetManager.load("LevelSel/Bill3.png", Texture.class);
+        assetManager.load("LevelSel/Bill3_complete.png", Texture.class);
+        assetManager.load("LevelSel/Bill4.png", Texture.class);
+        assetManager.load("LevelSel/Bill4_complete.png", Texture.class);
         assetManager.finishLoading();
 
         setScreen(new MenuScreen(this)); // Pass the game instance to MenuScreen
