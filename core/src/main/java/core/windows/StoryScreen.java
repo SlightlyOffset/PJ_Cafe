@@ -124,11 +124,11 @@ public class StoryScreen implements Screen {
         });
 
         nextBtn.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (clickSound != null) clickSound.play(game.sfxVolume);
-                game.setScreen(new LevelSelectionScreen(game));
-            }
+        @Override
+        public void clicked(InputEvent event, float x, float y) {
+            if (clickSound != null) clickSound.play(game.sfxVolume);
+            game.setScreen(new LevelSelectionScreen(game));
+        }
         });
 
         backBtn.setSize(143, 100);

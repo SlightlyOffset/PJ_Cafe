@@ -216,8 +216,8 @@ public class GameScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (clickSound != null) clickSound.play(game.sfxVolume);
-                game.setScreen(new SettingScreen(game));
-                dispose();
+                game.setScreen(new SettingScreen(game, GameScreen.this));
+                
             }
         });
         stage.addActor(backBtn);
