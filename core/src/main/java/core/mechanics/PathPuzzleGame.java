@@ -27,7 +27,8 @@ public class PathPuzzleGame extends Game {
     public static final String LEVEL_PATH = "levels/";
     public static final String[] LEVELS = {"level_1.json", "level_2.json", "level_3.json", "level_4.json"};
     
-    public static boolean[] unlockedLevels = new boolean[LEVELS.length];
+    public static boolean[] unlockedLevels = {true, false, false, false};
+    public static boolean[] completedLevels = {false, false, false, false};
     /**
      * Called when the application is first created.
      * Initializes the AssetManager, loads all necessary assets, and sets the initial screen to the MenuScreen.

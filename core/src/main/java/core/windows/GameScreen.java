@@ -326,10 +326,10 @@ public class GameScreen extends ScreenAdapter {
         if (solved) {
             System.out.println("Level Complete!");
             timer.pause();
-            PathPuzzleGame.unlockedLevels[currentLevelIndex] = true;
-            if (currentLevelIndex + 1 < PathPuzzleGame.LEVELS.length) {
-                        PathPuzzleGame.unlockedLevels[currentLevelIndex + 1] = true;
-                    }
+            PathPuzzleGame.completedLevels[currentLevelIndex] = true;
+            if (currentLevelIndex + 1 < PathPuzzleGame.unlockedLevels.length) {
+                PathPuzzleGame.unlockedLevels[currentLevelIndex+1] = true;
+}
             game.saveProgress();
             game.setScreen(new CompleteScreen(game, currentLevelIndex));
             dispose();

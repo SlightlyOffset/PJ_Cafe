@@ -109,12 +109,12 @@ public class LevelSelectionScreen implements Screen {
         stage.addActor(backBtn);
         stage.addActor(settingBtn);
 
-        // --- ส่วน Level Buttons (Bills) ---
-        String[] billPaths = {"LevelSel/Bill1.png", "LevelSel/Bill2.png", "LevelSel/Bill3.png", "LevelSel/Bill4.png"};
-        String[] completePaths = {"LevelSel/Bill1_complete.png", "LevelSel/Bill2_complete.png", "LevelSel/Bill3_complete.png", "LevelSel/Bill4_complete.png"};
-        
         float startX = 200;
         float spacing = 400;
+
+
+        String[] billPaths = {"LevelSel/Bill1.png", "LevelSel/Bill2.png", "LevelSel/Bill3.png", "LevelSel/Bill4.png"};
+        String[] completePaths = {"LevelSel/Bill1_complete.png", "LevelSel/Bill2_complete.png", "LevelSel/Bill3_complete.png", "LevelSel/Bill4_complete.png"};
 
         for (int i = 0; i < 4; i++) {
             final int levelIndex = i;
@@ -123,32 +123,32 @@ public class LevelSelectionScreen implements Screen {
             
             ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
 
-            // เช็คสถานะการผ่านเพื่อเปลี่ยนรูป
-            if (PathPuzzleGame.unlockedLevels[i]) { 
-                style.up = new TextureRegionDrawable(new TextureRegion(completeTex));
-            } else {
-                style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
+
+    if (PathPuzzleGame.completedLevels[i]) {
+        style.up = new TextureRegionDrawable(new TextureRegion(completeTex));
+    } else {
+        
+        style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
+    }
+    style.down = new TextureRegionDrawable(new TextureRegion(completeTex));
+
+    ImageButton billBtn = new ImageButton(style);
+    billBtn.setSize(314, 474);
+            billBtn.setPosition(startX + (i * spacing), 465); 
+
+    
+    if (!PathPuzzleGame.unlockedLevels[i]) {
+        billBtn.setDisabled(true);
+        billBtn.setColor(0.3f, 0.3f, 0.3f, 1.0f); 
+    } else {
+        billBtn.setColor(Color.WHITE); // ด่าน 1 จะเป็นสีขาวปกติ
+        billBtn.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (clickSound != null) clickSound.play(game.sfxVolume);
+                game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[levelIndex], levelIndex));
+                dispose();
             }
-            style.down = new TextureRegionDrawable(new TextureRegion(completeTex));
-
-            ImageButton billBtn = new ImageButton(style);
-            billBtn.setSize(314, 474);
-            billBtn.setPosition(startX + (i * spacing), 465);
-
-            // เช็คการปลดล็อก (ด่าน 1 เล่นได้เสมอ หรือด่านที่ผ่านด่านก่อนหน้ามาแล้ว)
-            boolean isUnlocked = (i == 0) || PathPuzzleGame.unlockedLevels[i];
-
-            if (!isUnlocked) {
-                billBtn.setDisabled(true);
-                billBtn.setColor(0.5f, 0.5f, 0.5f, 1f);
-            } else {
-                billBtn.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        if (clickSound != null) clickSound.play(game.sfxVolume);
-                        game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[levelIndex], levelIndex));
-                        dispose();
-                    }
                 });
             }
             stage.addActor(billBtn);
