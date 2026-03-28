@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -284,7 +283,7 @@ public class GameScreen extends ScreenAdapter {
 
         viewport.update(width, height, true);
 
-        gridOffsetX = ((width - TILE_SIZE * grid.getCols()) / 2f)-60f;
+        gridOffsetX = ((width - TILE_SIZE * grid.getCols()) / 2f);
         gridOffsetY = ((height - TILE_SIZE * grid.getRows()) / 2f) ;
     }
 
@@ -336,12 +335,6 @@ public class GameScreen extends ScreenAdapter {
         if (solved) {
             System.out.println("Level Complete!");
             timer.pause();
-            PathPuzzleGame.unlockedLevels[currentLevelIndex] = true;
-            if (currentLevelIndex + 1 < PathPuzzleGame.LEVELS.length) {
-                        PathPuzzleGame.unlockedLevels[currentLevelIndex + 1] = true;
-                    }
-            game.setScreen(new CompleteScreen(game, currentLevelIndex));
-            dispose();
         }
     }
 }
