@@ -119,7 +119,6 @@ public class LevelSelectionScreen implements Screen {
         stage.addActor(rootTable);
 
         // Top bar for Back button
-        Table topTable = new Table();
         // Create Buttons
         ImageButton.ImageButtonStyle BackStyle = new ImageButton.ImageButtonStyle();
         ImageButton.ImageButtonStyle SettingStyle = new ImageButton.ImageButtonStyle();
@@ -151,117 +150,65 @@ public class LevelSelectionScreen implements Screen {
                 dispose();
             }
         });
-        topTable.add(backBtn).left().pad(30).width(143).height(100);
-        topTable.add().expandX(); 
-        topTable.add(SettingBtn).right().pad(30).width(121).height(100);
-        rootTable.add(topTable).fillX().expandX().top().row();
+        backBtn.setSize(143, 100);
+        backBtn.setPosition(20, 975);
+
+        SettingBtn.setSize(121, 100);
+        SettingBtn.setPosition(1800,975);
+        stage.addActor(backBtn);
+        stage.addActor(SettingBtn);
+
 
 
         //Level bttn
-        Table levelTable = new Table();
-        for (int i = 0; i < PathPuzzleGame.LEVELS.length; i++) {
-            final int levelIndex = i;
-            final int levelNum = i + 1;
-            final String levelName = PathPuzzleGame.LEVELS[i]; 
+        // 1. เตรียม Resource รูปภาพ
+    String[] billPaths = {"LevelSel/Bill1.png", "LevelSel/Bill2.png", "LevelSel/Bill3.png", "LevelSel/Bill4.png"};
+    String[] completePaths = {"LevelSel/Bill1_complete.png", "LevelSel/Bill2_complete.png", "LevelSel/Bill3_complete.png", "LevelSel/Bill4_complete.png"};
+    
+    float startX = 200; // ตำแหน่ง X เริ่มต้น
+    float spacing = 400; // ระยะห่างระหว่างปุ่ม
 
-            String buttonText = "Order\n\n" + levelNum;
-            
-            if (PathPuzzleGame.unlockedLevels[i]) {
-                buttonText += "\n[DONE]";
-            }
-
-            TextButton btn = new TextButton(buttonText, skin);
-            
-            if (!PathPuzzleGame.unlockedLevels[i]) {
-                btn.setDisabled(true);
-                btn.setColor(Color.GRAY);
-            } else {
-                btn.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        if (clickSound != null) clickSound.play(game.sfxVolume);
-                        Gdx.app.log("LevelSelection", "Loading Level: " + levelName);
-
-                        game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + levelName, levelIndex));
-                        dispose();
-                    }
-                });
-            }
-            
-            levelTable.add(btn).width(230).height(400).pad(70);
-            
-            if ((i + 1) % 4 == 0) levelTable.row();
+    for (int i = 0; i < 4; i++) { // สมมติว่ามี 4 เลเวล
+        final int levelIndex = i;
+        
+        // 2. สร้าง Style โดยเช็คสถานะเลเวล
+        Texture normalTex = assetManager.get(billPaths[i], Texture.class);
+        Texture completeTex = assetManager.get(completePaths[i], Texture.class);
+        
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        
+        // ถ้าเลเวลนี้ "ผ่านแล้ว" ให้ใช้รูป Complete เป็นรูปหลัก (up)
+        // (คุณสามารถปรับ logic ตรงนี้ตามต้องการ เช่น ถ้าผ่านแล้วให้เปลี่ยนรูป)
+        if (PathPuzzleGame.unlockedLevels[i]) { 
+            style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
+            style.down = new TextureRegionDrawable(new TextureRegion(completeTex));
+        } else {
+            // ถ้ายังไม่ปลดล็อค อาจจะใช้สีเทา หรือรูปเดิมแต่กดไม่ได้
+            style.up = new TextureRegionDrawable(new TextureRegion(normalTex));
         }
-        rootTable.add(levelTable).expand().top();
 
-        ImageButton.ImageButtonStyle Bill1Style = new ImageButton.ImageButtonStyle();
-        ImageButton.ImageButtonStyle Bill2Style = new ImageButton.ImageButtonStyle();
-        ImageButton.ImageButtonStyle Bill3Style = new ImageButton.ImageButtonStyle();
-        ImageButton.ImageButtonStyle Bill4Style = new ImageButton.ImageButtonStyle();
-        // Create ImageButton styles
-        Texture Bill1 = assetManager.get("LevelSel/Bill1.png", Texture.class);
-        Texture Bill1_complete = assetManager.get("LevelSel/Bill1_complete.png", Texture.class);
-        Texture Bill2 = assetManager.get("LevelSel/Bill2.png", Texture.class);
-        Texture Bill2_complete = assetManager.get("LevelSel/Bill2_complete.png", Texture.class);
-        Texture Bill3 = assetManager.get("LevelSel/Bill3.png", Texture.class);
-        Texture Bill3_complete = assetManager.get("LevelSel/Bill3_complete.png", Texture.class);
-        Texture Bill4 = assetManager.get("LevelSel/Bill4.png", Texture.class);
-        Texture Bill4_complete = assetManager.get("LevelSel/Bill4_complete.png", Texture.class);
+        ImageButton billBtn = new ImageButton(style);
+        billBtn.setSize(314, 474);
+        billBtn.setPosition(startX + (i * spacing), 465);
 
-        Bill1Style.up = new TextureRegionDrawable(new TextureRegion(Bill1));
-        Bill2Style.up = new TextureRegionDrawable(new TextureRegion(Bill2));
-        Bill3Style.up = new TextureRegionDrawable(new TextureRegion(Bill3));
-        Bill4Style.up = new TextureRegionDrawable(new TextureRegion(Bill4));
-
-        ImageButton bill1 = new ImageButton(Bill1Style);
-        ImageButton bill2 = new ImageButton(Bill2Style);
-        ImageButton bill3 = new ImageButton(Bill3Style);
-        ImageButton bill4 = new ImageButton(Bill4Style);
-
-        //set position on button
-        levelTable.add(bill1).width(294).height(454).pad(60);
-        levelTable.add(bill2).width(294).height(454).pad(60);
-        levelTable.add(bill3).width(294).height(454).pad(60);
-        levelTable.add(bill4).width(294).height(454).pad(60);
-        rootTable.add(levelTable).expand().top().padTop(-79);
-
-        bill1.addListener(new ClickListener() {
+        // 3. จัดการสถานะการกด (Disabled)
+        if (!PathPuzzleGame.unlockedLevels[i]) {
+            billBtn.setDisabled(true);
+            billBtn.setColor(Color.GRAY); // ทำให้ปุ่มดูจางลงถ้ายังไม่ปลดล็อค
+        } else {
+            billBtn.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (clickSound != null) clickSound.play(game.sfxVolume);
-                    Gdx.app.log("LevelSelection", "Loading Level: " + PathPuzzleGame.LEVELS[0]);
-                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[0], 0));
+                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[levelIndex], levelIndex));
                     dispose();
                 }
             });
-        bill2.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (clickSound != null) clickSound.play(game.sfxVolume);
-                    Gdx.app.log("LevelSelection", "Loading Level: " + PathPuzzleGame.LEVELS[1]);
-                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[1], 1));
-                    dispose();
-                }
-            });
-        bill3.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (clickSound != null) clickSound.play(game.sfxVolume);
-                    Gdx.app.log("LevelSelection", "Loading Level: " + PathPuzzleGame.LEVELS[2]);
-                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[2], 2));
-                    dispose();
-                }
-            });
-        bill4.addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (clickSound != null) clickSound.play(game.sfxVolume);
-                    Gdx.app.log("LevelSelection", "Loading Level: " + PathPuzzleGame.LEVELS[3]);
-                    game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[3], 3));
-                    dispose();
-                }
-            });
+        }
+
+        stage.addActor(billBtn);
     }
+}
 
     /**
      * Renders the screen every frame.
