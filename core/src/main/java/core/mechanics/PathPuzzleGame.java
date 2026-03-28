@@ -24,11 +24,15 @@ public class PathPuzzleGame extends Game {
     /** The base directory where level JSON files are stored. */
     public static final String LEVEL_PATH = "levels/";
     public static final String[] LEVELS = {"level_1.json", "level_2.json", "level_3.json", "level_4.json"};
-
+    
+    public static boolean[] unlockedLevels = new boolean[LEVELS.length];
     /**
      * Called when the application is first created.
      * Initializes the AssetManager, loads all necessary assets, and sets the initial screen to the MenuScreen.
      */
+    static {
+        unlockedLevels[0] = true;
+    }
     @Override
     public void create() {
         assetManager = new AssetManager();
@@ -45,11 +49,25 @@ public class PathPuzzleGame extends Game {
         assetManager.load("buttons/Settingpress_bttn.png", Texture.class);
         assetManager.load("buttons/Exit_bttn.png", Texture.class);
         assetManager.load("buttons/Exitpress_bttn.png", Texture.class);
+        assetManager.load("buttons/Arrow.png", Texture.class);
+        assetManager.load("buttons/Arrow_press.png", Texture.class);
+        assetManager.load("buttons/setting.png", Texture.class);
         assetManager.load("setting/BackgroundSetting.png", Texture.class);   
         assetManager.load("setting/Save_bttn.png", Texture.class);
         assetManager.load("setting/Savepress_bttn.png", Texture.class);
         assetManager.load("setting/Exit_bttn.png", Texture.class);
         assetManager.load("setting/Exitpress_bttn.png", Texture.class);
+        assetManager.load("Complete/Background.png", Texture.class);
+        assetManager.load("Complete/Next_bttn.png", Texture.class);             
+        assetManager.load("Complete/Nextpress_bttn.png", Texture.class);
+        assetManager.load("LevelSel/Bill1.png", Texture.class);
+        assetManager.load("LevelSel/Bill1_complete.png", Texture.class);
+        assetManager.load("LevelSel/Bill2.png", Texture.class);
+        assetManager.load("LevelSel/Bill2_complete.png", Texture.class);
+        assetManager.load("LevelSel/Bill3.png", Texture.class);
+        assetManager.load("LevelSel/Bill3_complete.png", Texture.class);
+        assetManager.load("LevelSel/Bill4.png", Texture.class);
+        assetManager.load("LevelSel/Bill4_complete.png", Texture.class);
         assetManager.finishLoading();
 
         setScreen(new MenuScreen(this)); // Pass the game instance to MenuScreen

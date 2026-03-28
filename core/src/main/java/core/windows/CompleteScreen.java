@@ -10,16 +10,13 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -32,25 +29,23 @@ import core.mechanics.PathPuzzleGame;
  * A screen that allows the user to adjust game settings, such as music and sound effects volume.
  * It uses a {@link Stage} and UI widgets from Scene2D.
  */
-public class SettingScreen implements Screen {
+public class CompleteScreen  implements Screen {
     private final AssetManager assetManager;
     private final PathPuzzleGame game;
     private Stage stage;
-    private Table table;
     private Viewport viewport;
     private Skin skin;
     private Music music;
     private Sound clickSound;
-    private Slider sfxSlider, musicSlider;
-    private float sfxVolume = 1f;
-
+    private int finishedLevelIndex;
     /**
-     * Constructs a new SettingScreen.
+     * Constructs a new CompleteScreen.
      * @param game The main game instance, used to access global settings and the AssetManager.
      */
-    public SettingScreen(PathPuzzleGame game) {
+    public CompleteScreen(PathPuzzleGame game, int finishedLevelIndex) {
         this.game = game;
         this.assetManager = game.assetManager;
+        this.finishedLevelIndex = finishedLevelIndex;
     }
 
     /**
@@ -112,21 +107,12 @@ public class SettingScreen implements Screen {
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage); // Let the stage handle input events (click events)
         initSkin(); 
-
-
-        sfxSlider = new Slider(0f, 1f, 0.01f, false, skin);
-        musicSlider = new Slider(0f, 1f, 0.01f, false, skin);
-        sfxVolume = game.sfxVolume;
-        float musicVolume = game.musicVolume;
-        sfxSlider.setValue(sfxVolume);
-        musicSlider.setValue(musicVolume);
         setupUI();
 
         // Play background music if loaded
         if (assetManager.isLoaded("sounds/menu_bgm.mp3", Music.class)) {
             music = assetManager.get("sounds/menu_bgm.mp3", Music.class);
             music.setLooping(true);
-            music.setVolume(musicSlider.getValue());
             if (!music.isPlaying())
                 music.play();
         }
@@ -143,91 +129,59 @@ public class SettingScreen implements Screen {
         }
 
         // Create Buttons
-        Texture Save = assetManager.get("setting/Save_bttn.png", Texture.class);
-        Texture Savepress = assetManager.get("setting/Savepress_bttn.png", Texture.class);
+        Texture Next = assetManager.get("Complete/Next_bttn.png", Texture.class);
+        Texture Nextpress = assetManager.get("Complete/Nextpress_bttn.png", Texture.class);
         Texture Exit = assetManager.get("setting/Exit_bttn.png", Texture.class);
         Texture Exitpress = assetManager.get("setting/Exitpress_bttn.png", Texture.class);
 
         // Create ImageButton styles
-        ImageButton.ImageButtonStyle SaveStyle = new ImageButton.ImageButtonStyle();
-        SaveStyle.up = new TextureRegionDrawable(new TextureRegion(Save));
-        SaveStyle.over = new TextureRegionDrawable(new TextureRegion(Savepress));
+        ImageButton.ImageButtonStyle NextStyle = new ImageButton.ImageButtonStyle();
+        NextStyle.up = new TextureRegionDrawable(new TextureRegion(Next));
+        NextStyle.over = new TextureRegionDrawable(new TextureRegion(Nextpress));
 
         ImageButton.ImageButtonStyle ExitStyle = new ImageButton.ImageButtonStyle();
         ExitStyle.up = new TextureRegionDrawable(new TextureRegion(Exit));
         ExitStyle.over = new TextureRegionDrawable(new TextureRegion(Exitpress));
 
 
-        ImageButton SaveButton = new ImageButton(SaveStyle);
+        ImageButton NextButton = new ImageButton(NextStyle);
         ImageButton ExitButton = new ImageButton(ExitStyle);
 
         //set position on button
         ExitButton.setPosition(1013,150);
-        SaveButton.setPosition(521,150);
+        NextButton.setPosition(521,150);
 
         //set size on button
-        SaveButton.setSize(348, 134);
+        NextButton.setSize(348, 134);
         ExitButton.setSize(348, 134);
 
 
         //add button to stage
-        stage.addActor(SaveButton);
+        stage.addActor(NextButton);
         stage.addActor(ExitButton);
 
-        //add sfxLabel position
-        sfxSlider.setPosition(650, 580);
-        sfxSlider.setSize(750, 60);
 
-        //add musicLabel position
-        musicSlider.setPosition(650, 450);
-        musicSlider.setSize(750, 60);
-
-        //add label and slider to stage
-        stage.addActor(sfxSlider);
-        stage.addActor(musicSlider);
-        // Add listeners for interaction
-        SaveButton.addListener(new ClickListener() {
+        NextButton.addListener(new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            if (clickSound != null) clickSound.play(sfxVolume);
-
-
-            game.sfxVolume = sfxVolume;
-            game.musicVolume = musicSlider.getValue();
-
-            game.setScreen(new MenuScreen(game));
+            if (clickSound != null) clickSound.play(game.sfxVolume);
+            
+            int nextIndex = finishedLevelIndex + 1;
+            if (nextIndex < PathPuzzleGame.LEVELS.length) {
+                game.setScreen(new GameScreen(game, PathPuzzleGame.LEVEL_PATH + PathPuzzleGame.LEVELS[nextIndex], nextIndex));
+            } else {
+                game.setScreen(new LevelSelectionScreen(game));
+            }
             dispose();
         }
 
         });
 
-        sfxSlider.addListener(new ChangeListener() {
-        @Override
-        public void changed(ChangeEvent event, Actor actor) {
-            sfxVolume = sfxSlider.getValue();
-        }
-        });
-
-        musicSlider.addListener(new ChangeListener() {
-        @Override
-        public void changed(ChangeEvent event, Actor actor) {
-            if (music != null) {
-                music.setVolume(musicSlider.getValue());
-            }
-        }
-        });
-
         ExitButton.addListener(new ClickListener() {
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            if (clickSound != null) clickSound.play(sfxVolume);
-
-            // Revert music volume to its original value
-            if (music != null) {
-                music.setVolume(game.musicVolume);
-            }
-
-            game.setScreen(new MenuScreen(game));
+            if (clickSound != null) clickSound.play(game.sfxVolume);
+            game.setScreen(new LevelSelectionScreen(game));
             dispose();
         }
     });
@@ -247,8 +201,8 @@ public class SettingScreen implements Screen {
         // Draw background if we have one
         stage.getBatch().begin();
         // load background texture for settings screen
-        if (assetManager.isLoaded("setting/BackgroundSetting.png", Texture.class)) {
-            stage.getBatch().draw(assetManager.get("setting/BackgroundSetting.png", Texture.class), 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
+        if (assetManager.isLoaded("Complete/Background.png", Texture.class)) {
+            stage.getBatch().draw(assetManager.get("Complete/Background.png", Texture.class), 0, 0, viewport.getWorldWidth(), viewport.getWorldHeight());
         }
         stage.getBatch().end();
 
