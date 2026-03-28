@@ -114,7 +114,7 @@ public class GameScreen extends ScreenAdapter {
             camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
             // 4. Center the grid to the screen
-            gridOffsetX = (Gdx.graphics.getWidth() - TILE_SIZE * grid.getCols()) / 2f;
+            gridOffsetX = ((Gdx.graphics.getWidth() - TILE_SIZE * grid.getCols()) / 2f);
             gridOffsetY = (Gdx.graphics.getHeight() - TILE_SIZE * grid.getRows()) / 2f;
 
             // 5. Create a ShapeRenderer for drawing shapes
