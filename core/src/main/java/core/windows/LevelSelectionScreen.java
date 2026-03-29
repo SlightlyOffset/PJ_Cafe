@@ -35,7 +35,6 @@ public class LevelSelectionScreen implements Screen {
     private final PathPuzzleGame game;
     private final Stage stage;
     private final Viewport viewport;
-    private Skin skin;
     private Sound clickSound;
 
     public LevelSelectionScreen(PathPuzzleGame game) {
@@ -192,6 +191,5 @@ public class LevelSelectionScreen implements Screen {
     @Override
     public void dispose() {
         if (stage != null) stage.dispose();
-        if (skin != null) skin.dispose();
     }
 }
